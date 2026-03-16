@@ -1,0 +1,189 @@
+[2026-03-15 08:37:18] 
+======================================================================
+                     PHASE 3: FEATURE ENGINEERING                     
+======================================================================
+[2026-03-15 08:37:18] 
+======================================================================
+                        Loading Processed Data                        
+======================================================================
+[2026-03-15 08:37:21] Loaded regular_sym: 421,608 records
+[2026-03-15 08:37:21] Loaded tourney_sym: 4,820 records
+[2026-03-15 08:37:21] Loaded seeds: 4,370 entries
+[2026-03-15 08:37:21] Loaded Bradley-Terry ratings for 24 seasons
+[2026-03-15 08:37:21] Loaded Elo ratings for 24 seasons
+[2026-03-15 08:37:21] Loaded GLM Quality ratings for 24 seasons
+[2026-03-15 08:37:21] 
+Seasons to process: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+[2026-03-15 08:37:21] 
+======================================================================
+                     Computing Season Statistics                      
+======================================================================
+[2026-03-15 08:37:21]   Computing season averages per team...
+[2026-03-15 08:37:21]   Processing Men's and Women's data separately
+[2026-03-15 08:37:21]   Computed stats for 14,311 team-seasons
+[2026-03-15 08:37:21]   Features: ['Season', 'TeamID', 'avg_Score', 'avg_FGA', 'avg_Blk', 'avg_PF', 'avg_opponent_Score', 'avg_opponent_FGA', 'avg_opponent_Blk', 'avg_opponent_PF', 'avg_PointDiff', 'WinPct', 'Wins', 'Games', 'avg_Home']
+[2026-03-15 08:37:21] Saved: /Users/rafeburns/Downloads/MMML26/processed/season_stats.csv
+[2026-03-15 08:37:21] 
+Sample season statistics (first 5 teams of most recent season):
+[2026-03-15 08:37:21]   Team 1101.0: 10W, 38.5%, Avg Margin: -5.1
+[2026-03-15 08:37:21]   Team 1102.0: 3W, 10.3%, Avg Margin: -17.6
+[2026-03-15 08:37:21]   Team 1103.0: 22W, 81.5%, Avg Margin: 12.3
+[2026-03-15 08:37:21]   Team 1104.0: 22W, 75.9%, Avg Margin: 9.1
+[2026-03-15 08:37:21]   Team 1105.0: 13W, 50.0%, Avg Margin: -3.0
+[2026-03-15 08:37:21] 
+======================================================================
+            Loading Massey Ordinals (KenPom, Sagarin, RPI)            
+======================================================================
+[2026-03-15 08:37:21]   Loading Massey Ordinals...
+[2026-03-15 08:37:24]   Loaded 730,872 ratings from 6 systems
+[2026-03-15 08:37:24]   End-of-season ratings: 47,578
+[2026-03-15 08:37:24]   Final ordinals shape: (8355, 8)
+[2026-03-15 08:37:24]   Systems available: ['Rank_COL', 'Rank_DOL', 'Rank_MOR', 'Rank_POM', 'Rank_RPI', 'Rank_SAG']
+[2026-03-15 08:37:24] Saved: /Users/rafeburns/Downloads/MMML26/processed/massey_ordinals.csv
+[2026-03-15 08:37:24] 
+Massey Ordinals coverage:
+[2026-03-15 08:37:24]   Rank_COL: 8,339 team-seasons
+[2026-03-15 08:37:24]   Rank_DOL: 8,341 team-seasons
+[2026-03-15 08:37:24]   Rank_MOR: 8,355 team-seasons
+[2026-03-15 08:37:24]   Rank_POM: 8,352 team-seasons
+[2026-03-15 08:37:24]   Rank_RPI: 6,927 team-seasons
+[2026-03-15 08:37:24]   Rank_SAG: 7,264 team-seasons
+[2026-03-15 08:37:24] 
+======================================================================
+                    Computing Gold-Medal Features                     
+======================================================================
+[2026-03-15 08:37:24]   Computing 14-day win ratio...
+[2026-03-15 08:37:29]   Computed for 14,311 team-seasons
+[2026-03-15 08:37:29]   Avg games in 14-day window: 4.7
+[2026-03-15 08:37:29]   Computing away wins feature...
+[2026-03-15 08:37:34]   Computed for 14,311 team-seasons
+[2026-03-15 08:37:34]   Teams with away wins: 13,845 (96.7%)
+[2026-03-15 08:37:34]   Computing weighted wins...
+[2026-03-15 08:37:43]   Computed for 14,311 team-seasons
+[2026-03-15 08:37:43] Saved: /Users/rafeburns/Downloads/MMML26/processed/gold_medal_features.pkl
+[2026-03-15 08:37:43] 
+======================================================================
+           Building Training Features from Tournament Games           
+======================================================================
+[2026-03-15 08:37:43] Processing 2,410 tournament games...
+[2026-03-15 08:37:45]   Processed 500 games...
+[2026-03-15 08:37:48]   Processed 1,000 games...
+[2026-03-15 08:37:50]   Processed 1,500 games...
+[2026-03-15 08:37:52]   Processed 2,000 games...
+[2026-03-15 08:37:54] Saved: /Users/rafeburns/Downloads/MMML26/processed/training_features.csv
+[2026-03-15 08:37:54] 
+======================================================================
+                           Feature Summary                            
+======================================================================
+[2026-03-15 08:37:54] 
+Total features: 59
+[2026-03-15 08:37:54] 
+Feature list:
+[2026-03-15 08:37:54]    1. Rank_COL_diff
+[2026-03-15 08:37:54]    2. Rank_DOL_diff
+[2026-03-15 08:37:54]    3. Rank_MOR_diff
+[2026-03-15 08:37:54]    4. Rank_POM_diff
+[2026-03-15 08:37:54]    5. Rank_RPI_diff
+[2026-03-15 08:37:54]    6. Rank_SAG_diff
+[2026-03-15 08:37:54]    7. Seed_diff
+[2026-03-15 08:37:54]    8. T1_Rank_COL
+[2026-03-15 08:37:54]    9. T1_Rank_DOL
+[2026-03-15 08:37:54]   10. T1_Rank_MOR
+[2026-03-15 08:37:54]   11. T1_Rank_POM
+[2026-03-15 08:37:54]   12. T1_Rank_RPI
+[2026-03-15 08:37:54]   13. T1_Rank_SAG
+[2026-03-15 08:37:54]   14. T1_WinPct
+[2026-03-15 08:37:54]   15. T1_WinRatio14d
+[2026-03-15 08:37:54]   16. T1_avg_Blk
+[2026-03-15 08:37:54]   17. T1_avg_FGA
+[2026-03-15 08:37:54]   18. T1_avg_Home
+[2026-03-15 08:37:54]   19. T1_avg_PF
+[2026-03-15 08:37:54]   20. T1_avg_PointDiff
+[2026-03-15 08:37:54]   21. T1_avg_Score
+[2026-03-15 08:37:54]   22. T1_avg_opponent_Blk
+[2026-03-15 08:37:54]   23. T1_avg_opponent_FGA
+[2026-03-15 08:37:54]   24. T1_avg_opponent_PF
+[2026-03-15 08:37:54]   25. T1_avg_opponent_Score
+[2026-03-15 08:37:54]   26. T1_away_wins
+[2026-03-15 08:37:54]   27. T1_bt
+[2026-03-15 08:37:54]   28. T1_elo
+[2026-03-15 08:37:54]   29. T1_quality
+[2026-03-15 08:37:54]   30. T1_seed
+[2026-03-15 08:37:54]   31. T1_weighted_wins
+[2026-03-15 08:37:54]   32. T2_Rank_COL
+[2026-03-15 08:37:54]   33. T2_Rank_DOL
+[2026-03-15 08:37:54]   34. T2_Rank_MOR
+[2026-03-15 08:37:54]   35. T2_Rank_POM
+[2026-03-15 08:37:54]   36. T2_Rank_RPI
+[2026-03-15 08:37:54]   37. T2_Rank_SAG
+[2026-03-15 08:37:54]   38. T2_WinPct
+[2026-03-15 08:37:54]   39. T2_WinRatio14d
+[2026-03-15 08:37:54]   40. T2_avg_Blk
+[2026-03-15 08:37:54]   41. T2_avg_FGA
+[2026-03-15 08:37:54]   42. T2_avg_Home
+[2026-03-15 08:37:54]   43. T2_avg_PF
+[2026-03-15 08:37:54]   44. T2_avg_PointDiff
+[2026-03-15 08:37:54]   45. T2_avg_Score
+[2026-03-15 08:37:54]   46. T2_avg_opponent_Blk
+[2026-03-15 08:37:54]   47. T2_avg_opponent_FGA
+[2026-03-15 08:37:54]   48. T2_avg_opponent_PF
+[2026-03-15 08:37:54]   49. T2_avg_opponent_Score
+[2026-03-15 08:37:54]   50. T2_away_wins
+[2026-03-15 08:37:54]   51. T2_bt
+[2026-03-15 08:37:54]   52. T2_elo
+[2026-03-15 08:37:54]   53. T2_quality
+[2026-03-15 08:37:54]   54. T2_seed
+[2026-03-15 08:37:54]   55. T2_weighted_wins
+[2026-03-15 08:37:54]   56. bt_diff
+[2026-03-15 08:37:54]   57. elo_diff
+[2026-03-15 08:37:54]   58. men_women
+[2026-03-15 08:37:54]   59. quality_diff
+[2026-03-15 08:37:54] 
+Feature statistics:
+[2026-03-15 08:37:54]   men_women: mean=0.601, std=0.490, min=0.000, max=1.000, missing=0
+[2026-03-15 08:37:54]   T1_seed: mean=6.787, std=4.665, min=1.000, max=16.000, missing=0
+[2026-03-15 08:37:54]   T2_seed: mean=6.787, std=4.665, min=1.000, max=16.000, missing=0
+[2026-03-15 08:37:54]   Seed_diff: mean=0.000, std=7.420, min=-15.000, max=15.000, missing=0
+[2026-03-15 08:37:54]   T1_bt: mean=15.939, std=9.297, min=-13.454, max=48.649, missing=0
+[2026-03-15 08:37:54]   T2_bt: mean=15.939, std=9.297, min=-13.454, max=48.649, missing=0
+[2026-03-15 08:37:54]   bt_diff: mean=0.000, std=12.595, min=-55.620, max=55.620, missing=0
+[2026-03-15 08:37:54]   T1_elo: mean=1670.290, std=68.942, min=1458.324, max=1857.426, missing=0
+[2026-03-15 08:37:54]   T2_elo: mean=1670.290, std=68.942, min=1458.324, max=1857.426, missing=0
+[2026-03-15 08:37:54]   elo_diff: mean=0.000, std=98.430, min=-344.060, max=344.060, missing=0
+[2026-03-15 08:37:54]   T1_quality: mean=18.115, std=10.614, min=-19.720, max=51.921, missing=0
+[2026-03-15 08:37:54]   T2_quality: mean=18.115, std=10.614, min=-19.720, max=51.921, missing=0
+[2026-03-15 08:37:54]   quality_diff: mean=0.000, std=14.759, min=-63.229, max=63.229, missing=0
+[2026-03-15 08:37:54]   T1_avg_Score: mean=73.888, std=6.030, min=53.119, max=92.222, missing=0
+[2026-03-15 08:37:54]   T2_avg_Score: mean=73.888, std=6.030, min=53.119, max=92.222, missing=0
+[2026-03-15 08:37:54]   T1_avg_FGA: mean=58.441, std=4.043, min=42.036, max=75.680, missing=0
+[2026-03-15 08:37:54]   T2_avg_FGA: mean=58.441, std=4.043, min=42.036, max=75.680, missing=0
+[2026-03-15 08:37:54]   T1_avg_Blk: mean=4.031, std=1.246, min=0.655, max=9.244, missing=0
+[2026-03-15 08:37:54]   T2_avg_Blk: mean=4.031, std=1.246, min=0.655, max=9.244, missing=0
+[2026-03-15 08:37:54]   T1_avg_PF: mean=16.742, std=1.970, min=9.462, max=23.767, missing=0
+[2026-03-15 08:37:54] 
+Correlation with PointDiff (top 10):
+[2026-03-15 08:37:54]   bt_diff: 0.757
+[2026-03-15 08:37:54]   quality_diff: 0.752
+[2026-03-15 08:37:54]   Seed_diff: 0.660
+[2026-03-15 08:37:54]   T2_seed: 0.525
+[2026-03-15 08:37:54]   T1_seed: 0.525
+[2026-03-15 08:37:54]   T1_quality: 0.523
+[2026-03-15 08:37:54]   T2_quality: 0.523
+[2026-03-15 08:37:54]   elo_diff: 0.518
+[2026-03-15 08:37:54]   T2_bt: 0.513
+[2026-03-15 08:37:54]   T1_bt: 0.513
+[2026-03-15 08:37:54] 
+======================================================================
+                      PHASE 3 COMPLETE - SUMMARY                      
+======================================================================
+[2026-03-15 08:37:54] 
+Feature engineering completed:
+[2026-03-15 08:37:54]   - Season statistics computed for 14,311 team-seasons
+[2026-03-15 08:37:54]   - Gold-medal features computed
+[2026-03-15 08:37:54]   - Training features: 4,820 samples
+[2026-03-15 08:37:54]   - Feature count: 59
+[2026-03-15 08:37:54]   - Seasons in training: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-15 08:37:54] 
+Outputs saved to: /Users/rafeburns/Downloads/MMML26/processed
+[2026-03-15 08:37:54] Log saved to: /Users/rafeburns/Downloads/MMML26/outputs/03_feature_engineering.log
+[2026-03-15 08:37:54] ======================================================================

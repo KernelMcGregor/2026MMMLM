@@ -1,0 +1,170 @@
+[2026-03-14 20:13:24] 
+======================================================================
+                      PHASE 1: DATA PREPARATION                       
+======================================================================
+[2026-03-14 20:13:24] Project directory: /Users/rafeburns/Downloads/MMML26
+[2026-03-14 20:13:24] Data directory: /Users/rafeburns/Downloads/MMML26/data
+[2026-03-14 20:13:24] Output directory: /Users/rafeburns/Downloads/MMML26/outputs
+[2026-03-14 20:13:24] 
+======================================================================
+                     STEP 1.1: Loading Data Files                     
+======================================================================
+[2026-03-14 20:13:25] Loaded MRegularSeasonDetailedResults: 124,031 games
+[2026-03-14 20:13:25] Loaded WRegularSeasonDetailedResults: 86,773 games
+[2026-03-14 20:13:25] Loaded MNCAATourneyDetailedResults: 1,449 games
+[2026-03-14 20:13:25] Loaded WNCAATourneyDetailedResults: 961 games
+[2026-03-14 20:13:25] Loaded MNCAATourneySeeds: 2,626 entries
+[2026-03-14 20:13:25] Loaded WNCAATourneySeeds: 1,744 entries
+[2026-03-14 20:13:25] 
+======================================================================
+        STEP 1.2: Processing Men's and Women's Data Separately        
+======================================================================
+[2026-03-14 20:13:25] NOTE: Men's and Women's data are kept SEPARATE throughout the pipeline.
+[2026-03-14 20:13:25] They are independent competitions with no crossover.
+[2026-03-14 20:13:25] 
+Men's regular season: 124,031 games
+[2026-03-14 20:13:25] Women's regular season: 86,773 games
+[2026-03-14 20:13:25] Men's tournament: 1,449 games
+[2026-03-14 20:13:25] Women's tournament: 961 games
+[2026-03-14 20:13:25] Men's seeds: 2,626 entries
+[2026-03-14 20:13:25] Women's seeds: 1,744 entries
+[2026-03-14 20:13:25] 
+--- All Regular Season (with Gender column) ---
+[2026-03-14 20:13:25]   Shape: 210,804 rows x 35 columns
+[2026-03-14 20:13:25]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender']
+[2026-03-14 20:13:25]   Memory usage: 76.39 MB
+[2026-03-14 20:13:25]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+[2026-03-14 20:13:25]   Missing values: None
+[2026-03-14 20:13:25] 
+--- All Tournament (with Gender column) ---
+[2026-03-14 20:13:25]   Shape: 2,410 rows x 35 columns
+[2026-03-14 20:13:25]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender']
+[2026-03-14 20:13:25]   Memory usage: 0.87 MB
+[2026-03-14 20:13:25]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:25]   Missing values: None
+[2026-03-14 20:13:25] 
+--- All Seeds (with Gender column) ---
+[2026-03-14 20:13:25]   Shape: 4,370 rows x 4 columns
+[2026-03-14 20:13:25]   Columns: ['Season', 'Seed', 'TeamID', 'Gender']
+[2026-03-14 20:13:25]   Memory usage: 0.56 MB
+[2026-03-14 20:13:25]   Seasons: [1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:25]   Missing values: None
+[2026-03-14 20:13:25] 
+======================================================================
+                 STEP 1.3: Normalizing Overtime Stats                 
+======================================================================
+[2026-03-14 20:13:25] 
+Regular season normalization:
+[2026-03-14 20:13:25]   Found 10,850 overtime games (5.1%)
+[2026-03-14 20:13:25]   Normalized 28 stat columns
+[2026-03-14 20:13:25] 
+Tournament normalization:
+[2026-03-14 20:13:25]   Found 112 overtime games (4.6%)
+[2026-03-14 20:13:25]   Normalized 28 stat columns
+[2026-03-14 20:13:25] 
+======================================================================
+                STEP 1.4: Adding Home Court Indicator                 
+======================================================================
+[2026-03-14 20:13:25] Home court distribution in regular season:
+[2026-03-14 20:13:25]   H: 120,927 games (57.4%)
+[2026-03-14 20:13:25]   A: 69,686 games (33.1%)
+[2026-03-14 20:13:25]   N: 20,191 games (9.6%)
+[2026-03-14 20:13:25] Tournament games set to neutral (WHome=0)
+[2026-03-14 20:13:25] 
+======================================================================
+             STEP 1.5: Creating Symmetric Game DataFrames             
+======================================================================
+[2026-03-14 20:13:25] 
+Regular season:
+[2026-03-14 20:13:25]   Creating symmetric game dataframe...
+[2026-03-14 20:13:26]   Created 421,608 symmetric game records from 210,804 games
+[2026-03-14 20:13:26]     M: 248,062 records
+[2026-03-14 20:13:26]     W: 173,546 records
+[2026-03-14 20:13:26] 
+--- Symmetric Regular Season ---
+[2026-03-14 20:13:26]   Shape: 421,608 rows x 70 columns
+[2026-03-14 20:13:26]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender', 'WHome', 'T1_TeamID', 'T2_TeamID', 'T1_Score', 'T2_Score', 'PointDiff', 'T1_Win', 'T1_Home', 'T2_Home', 'T1_FGM', 'T2_FGM', 'T1_FGA', 'T2_FGA', 'T1_FGM3', 'T2_FGM3', 'T1_FGA3', 'T2_FGA3', 'T1_FTM', 'T2_FTM', 'T1_FTA', 'T2_FTA', 'T1_OR', 'T2_OR', 'T1_DR', 'T2_DR', 'T1_Ast', 'T2_Ast', 'T1_TO', 'T2_TO', 'T1_Stl', 'T2_Stl', 'T1_Blk', 'T2_Blk', 'T1_PF', 'T2_PF']
+[2026-03-14 20:13:26]   Memory usage: 265.37 MB
+[2026-03-14 20:13:26]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+[2026-03-14 20:13:26]   Missing values: None
+[2026-03-14 20:13:26] 
+Tournament:
+[2026-03-14 20:13:26]   Creating symmetric game dataframe...
+[2026-03-14 20:13:26]   Created 4,820 symmetric game records from 2,410 games
+[2026-03-14 20:13:26]     M: 2,898 records
+[2026-03-14 20:13:26]     W: 1,922 records
+[2026-03-14 20:13:26] 
+--- Symmetric Tournament ---
+[2026-03-14 20:13:26]   Shape: 4,820 rows x 70 columns
+[2026-03-14 20:13:26]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender', 'WHome', 'T1_TeamID', 'T2_TeamID', 'T1_Score', 'T2_Score', 'PointDiff', 'T1_Win', 'T1_Home', 'T2_Home', 'T1_FGM', 'T2_FGM', 'T1_FGA', 'T2_FGA', 'T1_FGM3', 'T2_FGM3', 'T1_FGA3', 'T2_FGA3', 'T1_FTM', 'T2_FTM', 'T1_FTA', 'T2_FTA', 'T1_OR', 'T2_OR', 'T1_DR', 'T2_DR', 'T1_Ast', 'T2_Ast', 'T1_TO', 'T2_TO', 'T1_Stl', 'T2_Stl', 'T1_Blk', 'T2_Blk', 'T1_PF', 'T2_PF']
+[2026-03-14 20:13:26]   Memory usage: 3.03 MB
+[2026-03-14 20:13:26]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:26]   Missing values: None
+[2026-03-14 20:13:26] 
+--- Point Differential Analysis ---
+[2026-03-14 20:13:26]   Regular season mean: 0.00
+[2026-03-14 20:13:26]   Regular season std: 16.55
+[2026-03-14 20:13:26]   Regular season min/max: -108 / 108
+[2026-03-14 20:13:26]   Tournament mean: 0.00
+[2026-03-14 20:13:26]   Tournament std: 17.72
+[2026-03-14 20:13:26] 
+======================================================================
+                  STEP 1.6: Parsing Tournament Seeds                  
+======================================================================
+[2026-03-14 20:13:26] 
+Seed distribution:
+[2026-03-14 20:13:26]   Seed  1: 268 teams
+[2026-03-14 20:13:26]   Seed  2: 268 teams
+[2026-03-14 20:13:26]   Seed  3: 268 teams
+[2026-03-14 20:13:26]   Seed  4: 268 teams
+[2026-03-14 20:13:26]   Seed  5: 268 teams
+[2026-03-14 20:13:26]   Seed  6: 268 teams
+[2026-03-14 20:13:26]   Seed  7: 268 teams
+[2026-03-14 20:13:26]   Seed  8: 268 teams
+[2026-03-14 20:13:26]   Seed  9: 268 teams
+[2026-03-14 20:13:26]   Seed 10: 270 teams
+[2026-03-14 20:13:26]   Seed 11: 295 teams
+[2026-03-14 20:13:26]   Seed 12: 273 teams
+[2026-03-14 20:13:26]   Seed 13: 269 teams
+[2026-03-14 20:13:26]   Seed 14: 269 teams
+[2026-03-14 20:13:26]   Seed 15: 268 teams
+[2026-03-14 20:13:26]   Seed 16: 314 teams
+[2026-03-14 20:13:26] 
+Region distribution:
+[2026-03-14 20:13:26]   W: 1,095 teams
+[2026-03-14 20:13:26]   X: 1,091 teams
+[2026-03-14 20:13:26]   Y: 1,096 teams
+[2026-03-14 20:13:26]   Z: 1,088 teams
+[2026-03-14 20:13:26] 
+--- Parsed Seeds ---
+[2026-03-14 20:13:26]   Shape: 4,370 rows x 6 columns
+[2026-03-14 20:13:26]   Columns: ['Season', 'Seed', 'TeamID', 'Gender', 'SeedNum', 'Region']
+[2026-03-14 20:13:26]   Memory usage: 0.83 MB
+[2026-03-14 20:13:26]   Seasons: [1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:26]   Missing values: None
+[2026-03-14 20:13:26] 
+======================================================================
+                        SAVING PROCESSED DATA                         
+======================================================================
+[2026-03-14 20:13:33] Saved: /Users/rafeburns/Downloads/MMML26/processed/regular_results.csv
+[2026-03-14 20:13:33] Saved: /Users/rafeburns/Downloads/MMML26/processed/tourney_results.csv
+[2026-03-14 20:13:33] Saved: /Users/rafeburns/Downloads/MMML26/processed/seeds.csv
+[2026-03-14 20:14:00] Saved: /Users/rafeburns/Downloads/MMML26/processed/regular_sym.csv
+[2026-03-14 20:14:00] Saved: /Users/rafeburns/Downloads/MMML26/processed/tourney_sym.csv
+[2026-03-14 20:14:00] 
+======================================================================
+                      PHASE 1 COMPLETE - SUMMARY                      
+======================================================================
+[2026-03-14 20:14:00] 
+Data loaded and processed:
+[2026-03-14 20:14:00]   - Regular season games: 210,804
+[2026-03-14 20:14:00]   - Tournament games: 2,410
+[2026-03-14 20:14:00]   - Seeds entries: 4,370
+[2026-03-14 20:14:00]   - Symmetric regular records: 421,608
+[2026-03-14 20:14:00]   - Symmetric tournament records: 4,820
+[2026-03-14 20:14:00]   - Seasons covered: 2003 to 2026 (24 seasons)
+[2026-03-14 20:14:00]   - Unique teams: 739
+[2026-03-14 20:14:00] 
+Outputs saved to: /Users/rafeburns/Downloads/MMML26/processed
+[2026-03-14 20:14:00] Log saved to: /Users/rafeburns/Downloads/MMML26/outputs/01_data_preparation.log
+[2026-03-14 20:14:00] ======================================================================

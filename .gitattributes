@@ -1,0 +1,2 @@
+Data/MMasseyOrdinals.csv filter=lfs diff=lfs merge=lfs -text
+processed/regular_sym.csv filter=lfs diff=lfs merge=lfs -text

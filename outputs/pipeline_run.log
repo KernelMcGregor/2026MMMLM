@@ -1,0 +1,1995 @@
+/Users/rafeburns/opt/anaconda3/lib/python3.9/site-packages/pandas/core/computation/expressions.py:21: UserWarning: Pandas requires version '2.8.4' or newer of 'numexpr' (version '2.8.3' currently installed).
+  from pandas.core.computation.check import NUMEXPR_INSTALLED
+/Users/rafeburns/opt/anaconda3/lib/python3.9/site-packages/pandas/core/arrays/masked.py:61: UserWarning: Pandas requires version '1.3.6' or newer of 'bottleneck' (version '1.3.5' currently installed).
+  from pandas.core import (
+[2026-03-14 20:13:24] 
+======================================================================
+                      PHASE 1: DATA PREPARATION                       
+======================================================================
+[2026-03-14 20:13:24] Project directory: /Users/rafeburns/Downloads/MMML26
+[2026-03-14 20:13:24] Data directory: /Users/rafeburns/Downloads/MMML26/data
+[2026-03-14 20:13:24] Output directory: /Users/rafeburns/Downloads/MMML26/outputs
+[2026-03-14 20:13:24] 
+======================================================================
+                     STEP 1.1: Loading Data Files                     
+======================================================================
+[2026-03-14 20:13:25] Loaded MRegularSeasonDetailedResults: 124,031 games
+[2026-03-14 20:13:25] Loaded WRegularSeasonDetailedResults: 86,773 games
+[2026-03-14 20:13:25] Loaded MNCAATourneyDetailedResults: 1,449 games
+[2026-03-14 20:13:25] Loaded WNCAATourneyDetailedResults: 961 games
+[2026-03-14 20:13:25] Loaded MNCAATourneySeeds: 2,626 entries
+[2026-03-14 20:13:25] Loaded WNCAATourneySeeds: 1,744 entries
+[2026-03-14 20:13:25] 
+======================================================================
+        STEP 1.2: Processing Men's and Women's Data Separately        
+======================================================================
+[2026-03-14 20:13:25] NOTE: Men's and Women's data are kept SEPARATE throughout the pipeline.
+[2026-03-14 20:13:25] They are independent competitions with no crossover.
+[2026-03-14 20:13:25] 
+Men's regular season: 124,031 games
+[2026-03-14 20:13:25] Women's regular season: 86,773 games
+[2026-03-14 20:13:25] Men's tournament: 1,449 games
+[2026-03-14 20:13:25] Women's tournament: 961 games
+[2026-03-14 20:13:25] Men's seeds: 2,626 entries
+[2026-03-14 20:13:25] Women's seeds: 1,744 entries
+[2026-03-14 20:13:25] 
+--- All Regular Season (with Gender column) ---
+[2026-03-14 20:13:25]   Shape: 210,804 rows x 35 columns
+[2026-03-14 20:13:25]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender']
+[2026-03-14 20:13:25]   Memory usage: 76.39 MB
+[2026-03-14 20:13:25]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+[2026-03-14 20:13:25]   Missing values: None
+[2026-03-14 20:13:25] 
+--- All Tournament (with Gender column) ---
+[2026-03-14 20:13:25]   Shape: 2,410 rows x 35 columns
+[2026-03-14 20:13:25]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender']
+[2026-03-14 20:13:25]   Memory usage: 0.87 MB
+[2026-03-14 20:13:25]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:25]   Missing values: None
+[2026-03-14 20:13:25] 
+--- All Seeds (with Gender column) ---
+[2026-03-14 20:13:25]   Shape: 4,370 rows x 4 columns
+[2026-03-14 20:13:25]   Columns: ['Season', 'Seed', 'TeamID', 'Gender']
+[2026-03-14 20:13:25]   Memory usage: 0.56 MB
+[2026-03-14 20:13:25]   Seasons: [1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:25]   Missing values: None
+[2026-03-14 20:13:25] 
+======================================================================
+                 STEP 1.3: Normalizing Overtime Stats                 
+======================================================================
+[2026-03-14 20:13:25] 
+Regular season normalization:
+[2026-03-14 20:13:25]   Found 10,850 overtime games (5.1%)
+[2026-03-14 20:13:25]   Normalized 28 stat columns
+[2026-03-14 20:13:25] 
+Tournament normalization:
+[2026-03-14 20:13:25]   Found 112 overtime games (4.6%)
+[2026-03-14 20:13:25]   Normalized 28 stat columns
+[2026-03-14 20:13:25] 
+======================================================================
+                STEP 1.4: Adding Home Court Indicator                 
+======================================================================
+[2026-03-14 20:13:25] Home court distribution in regular season:
+[2026-03-14 20:13:25]   H: 120,927 games (57.4%)
+[2026-03-14 20:13:25]   A: 69,686 games (33.1%)
+[2026-03-14 20:13:25]   N: 20,191 games (9.6%)
+[2026-03-14 20:13:25] Tournament games set to neutral (WHome=0)
+[2026-03-14 20:13:25] 
+======================================================================
+             STEP 1.5: Creating Symmetric Game DataFrames             
+======================================================================
+[2026-03-14 20:13:25] 
+Regular season:
+[2026-03-14 20:13:25]   Creating symmetric game dataframe...
+[2026-03-14 20:13:26]   Created 421,608 symmetric game records from 210,804 games
+[2026-03-14 20:13:26]     M: 248,062 records
+[2026-03-14 20:13:26]     W: 173,546 records
+[2026-03-14 20:13:26] 
+--- Symmetric Regular Season ---
+[2026-03-14 20:13:26]   Shape: 421,608 rows x 70 columns
+[2026-03-14 20:13:26]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender', 'WHome', 'T1_TeamID', 'T2_TeamID', 'T1_Score', 'T2_Score', 'PointDiff', 'T1_Win', 'T1_Home', 'T2_Home', 'T1_FGM', 'T2_FGM', 'T1_FGA', 'T2_FGA', 'T1_FGM3', 'T2_FGM3', 'T1_FGA3', 'T2_FGA3', 'T1_FTM', 'T2_FTM', 'T1_FTA', 'T2_FTA', 'T1_OR', 'T2_OR', 'T1_DR', 'T2_DR', 'T1_Ast', 'T2_Ast', 'T1_TO', 'T2_TO', 'T1_Stl', 'T2_Stl', 'T1_Blk', 'T2_Blk', 'T1_PF', 'T2_PF']
+[2026-03-14 20:13:26]   Memory usage: 265.37 MB
+[2026-03-14 20:13:26]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+[2026-03-14 20:13:26]   Missing values: None
+[2026-03-14 20:13:26] 
+Tournament:
+[2026-03-14 20:13:26]   Creating symmetric game dataframe...
+[2026-03-14 20:13:26]   Created 4,820 symmetric game records from 2,410 games
+[2026-03-14 20:13:26]     M: 2,898 records
+[2026-03-14 20:13:26]     W: 1,922 records
+[2026-03-14 20:13:26] 
+--- Symmetric Tournament ---
+[2026-03-14 20:13:26]   Shape: 4,820 rows x 70 columns
+[2026-03-14 20:13:26]   Columns: ['Season', 'DayNum', 'WTeamID', 'WScore', 'LTeamID', 'LScore', 'WLoc', 'NumOT', 'WFGM', 'WFGA', 'WFGM3', 'WFGA3', 'WFTM', 'WFTA', 'WOR', 'WDR', 'WAst', 'WTO', 'WStl', 'WBlk', 'WPF', 'LFGM', 'LFGA', 'LFGM3', 'LFGA3', 'LFTM', 'LFTA', 'LOR', 'LDR', 'LAst', 'LTO', 'LStl', 'LBlk', 'LPF', 'Gender', 'WHome', 'T1_TeamID', 'T2_TeamID', 'T1_Score', 'T2_Score', 'PointDiff', 'T1_Win', 'T1_Home', 'T2_Home', 'T1_FGM', 'T2_FGM', 'T1_FGA', 'T2_FGA', 'T1_FGM3', 'T2_FGM3', 'T1_FGA3', 'T2_FGA3', 'T1_FTM', 'T2_FTM', 'T1_FTA', 'T2_FTA', 'T1_OR', 'T2_OR', 'T1_DR', 'T2_DR', 'T1_Ast', 'T2_Ast', 'T1_TO', 'T2_TO', 'T1_Stl', 'T2_Stl', 'T1_Blk', 'T2_Blk', 'T1_PF', 'T2_PF']
+[2026-03-14 20:13:26]   Memory usage: 3.03 MB
+[2026-03-14 20:13:26]   Seasons: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:26]   Missing values: None
+[2026-03-14 20:13:26] 
+--- Point Differential Analysis ---
+[2026-03-14 20:13:26]   Regular season mean: 0.00
+[2026-03-14 20:13:26]   Regular season std: 16.55
+[2026-03-14 20:13:26]   Regular season min/max: -108 / 108
+[2026-03-14 20:13:26]   Tournament mean: 0.00
+[2026-03-14 20:13:26]   Tournament std: 17.72
+[2026-03-14 20:13:26] 
+======================================================================
+                  STEP 1.6: Parsing Tournament Seeds                  
+======================================================================
+[2026-03-14 20:13:26] 
+Seed distribution:
+[2026-03-14 20:13:26]   Seed  1: 268 teams
+[2026-03-14 20:13:26]   Seed  2: 268 teams
+[2026-03-14 20:13:26]   Seed  3: 268 teams
+[2026-03-14 20:13:26]   Seed  4: 268 teams
+[2026-03-14 20:13:26]   Seed  5: 268 teams
+[2026-03-14 20:13:26]   Seed  6: 268 teams
+[2026-03-14 20:13:26]   Seed  7: 268 teams
+[2026-03-14 20:13:26]   Seed  8: 268 teams
+[2026-03-14 20:13:26]   Seed  9: 268 teams
+[2026-03-14 20:13:26]   Seed 10: 270 teams
+[2026-03-14 20:13:26]   Seed 11: 295 teams
+[2026-03-14 20:13:26]   Seed 12: 273 teams
+[2026-03-14 20:13:26]   Seed 13: 269 teams
+[2026-03-14 20:13:26]   Seed 14: 269 teams
+[2026-03-14 20:13:26]   Seed 15: 268 teams
+[2026-03-14 20:13:26]   Seed 16: 314 teams
+[2026-03-14 20:13:26] 
+Region distribution:
+[2026-03-14 20:13:26]   W: 1,095 teams
+[2026-03-14 20:13:26]   X: 1,091 teams
+[2026-03-14 20:13:26]   Y: 1,096 teams
+[2026-03-14 20:13:26]   Z: 1,088 teams
+[2026-03-14 20:13:26] 
+--- Parsed Seeds ---
+[2026-03-14 20:13:26]   Shape: 4,370 rows x 6 columns
+[2026-03-14 20:13:26]   Columns: ['Season', 'Seed', 'TeamID', 'Gender', 'SeedNum', 'Region']
+[2026-03-14 20:13:26]   Memory usage: 0.83 MB
+[2026-03-14 20:13:26]   Seasons: [1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+[2026-03-14 20:13:26]   Missing values: None
+[2026-03-14 20:13:26] 
+======================================================================
+                        SAVING PROCESSED DATA                         
+======================================================================
+[2026-03-14 20:13:33] Saved: /Users/rafeburns/Downloads/MMML26/processed/regular_results.csv
+[2026-03-14 20:13:33] Saved: /Users/rafeburns/Downloads/MMML26/processed/tourney_results.csv
+[2026-03-14 20:13:33] Saved: /Users/rafeburns/Downloads/MMML26/processed/seeds.csv
+[2026-03-14 20:14:00] Saved: /Users/rafeburns/Downloads/MMML26/processed/regular_sym.csv
+[2026-03-14 20:14:00] Saved: /Users/rafeburns/Downloads/MMML26/processed/tourney_sym.csv
+[2026-03-14 20:14:00] 
+======================================================================
+                      PHASE 1 COMPLETE - SUMMARY                      
+======================================================================
+[2026-03-14 20:14:00] 
+Data loaded and processed:
+[2026-03-14 20:14:00]   - Regular season games: 210,804
+[2026-03-14 20:14:00]   - Tournament games: 2,410
+[2026-03-14 20:14:00]   - Seeds entries: 4,370
+[2026-03-14 20:14:00]   - Symmetric regular records: 421,608
+[2026-03-14 20:14:00]   - Symmetric tournament records: 4,820
+[2026-03-14 20:14:00]   - Seasons covered: 2003 to 2026 (24 seasons)
+[2026-03-14 20:14:00]   - Unique teams: 739
+[2026-03-14 20:14:00] 
+Outputs saved to: /Users/rafeburns/Downloads/MMML26/processed
+[2026-03-14 20:14:00] Log saved to: /Users/rafeburns/Downloads/MMML26/outputs/01_data_preparation.log
+[2026-03-14 20:14:00] ======================================================================
+/Users/rafeburns/opt/anaconda3/lib/python3.9/site-packages/pandas/core/computation/expressions.py:21: UserWarning: Pandas requires version '2.8.4' or newer of 'numexpr' (version '2.8.3' currently installed).
+  from pandas.core.computation.check import NUMEXPR_INSTALLED
+/Users/rafeburns/opt/anaconda3/lib/python3.9/site-packages/pandas/core/arrays/masked.py:61: UserWarning: Pandas requires version '1.3.6' or newer of 'bottleneck' (version '1.3.5' currently installed).
+  from pandas.core import (
+[2026-03-14 20:14:02] 
+======================================================================
+                    PHASE 2: TEAM STRENGTH RATINGS                    
+======================================================================
+[2026-03-14 20:14:02] 
+======================================================================
+                        Loading Processed Data                        
+======================================================================
+[2026-03-14 20:14:05] Loaded regular_sym: 421,608 records
+[2026-03-14 20:14:05] Loaded regular_results: 210,804 games
+[2026-03-14 20:14:05] Loaded seeds: 4,370 entries
+[2026-03-14 20:14:05] 
+Seasons to process: [2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
+[2026-03-14 20:14:05] Genders in data: ['M', 'W']
+[2026-03-14 20:14:05] NOTE: Men's and Women's ratings computed SEPARATELY
+[2026-03-14 20:14:05] 
+======================================================================
+       Computing Bradley-Terry Ratings (per season, per gender)       
+======================================================================
+[2026-03-14 20:14:05] 
+Season 2003 - M:
+[2026-03-14 20:14:05]   Games: 4,616
+[2026-03-14 20:14:07]   Building design matrix for 327 teams, 4616 games...
+[2026-03-14 20:14:07]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:07]   Home court advantage: 4.39 points
+[2026-03-14 20:14:07]   Strength range: -23.52 to 21.30
+[2026-03-14 20:14:07] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:07]      1. Team 1242: 21.30
+[2026-03-14 20:14:07]      2. Team 1112: 20.39
+[2026-03-14 20:14:07]      3. Team 1246: 20.11
+[2026-03-14 20:14:07]      4. Team 1338: 18.80
+[2026-03-14 20:14:07]      5. Team 1257: 17.67
+[2026-03-14 20:14:07] 
+Season 2003 - W:
+[2026-03-14 20:14:07]   No games found, skipping
+[2026-03-14 20:14:07] 
+Season 2004 - M:
+[2026-03-14 20:14:07]   Games: 4,571
+[2026-03-14 20:14:07]   Building design matrix for 326 teams, 4571 games...
+[2026-03-14 20:14:08]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:08]   Home court advantage: 4.22 points
+[2026-03-14 20:14:08]   Strength range: -26.00 to 22.69
+[2026-03-14 20:14:08] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:08]      1. Team 1181: 22.69
+[2026-03-14 20:14:08]      2. Team 1386: 19.50
+[2026-03-14 20:14:08]      3. Team 1163: 18.88
+[2026-03-14 20:14:08]      4. Team 1210: 18.72
+[2026-03-14 20:14:08]      5. Team 1211: 18.26
+[2026-03-14 20:14:08] 
+Season 2004 - W:
+[2026-03-14 20:14:08]   No games found, skipping
+[2026-03-14 20:14:08] 
+Season 2005 - M:
+[2026-03-14 20:14:08]   Games: 4,675
+[2026-03-14 20:14:08]   Building design matrix for 330 teams, 4675 games...
+[2026-03-14 20:14:08]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:08]   Home court advantage: 4.25 points
+[2026-03-14 20:14:08]   Strength range: -28.69 to 25.61
+[2026-03-14 20:14:08] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:08]      1. Team 1314: 25.61
+[2026-03-14 20:14:08]      2. Team 1181: 21.45
+[2026-03-14 20:14:08]      3. Team 1228: 21.03
+[2026-03-14 20:14:08]      4. Team 1257: 20.28
+[2026-03-14 20:14:08]      5. Team 1329: 19.61
+[2026-03-14 20:14:08] 
+Season 2005 - W:
+[2026-03-14 20:14:08]   No games found, skipping
+[2026-03-14 20:14:08] 
+Season 2006 - M:
+[2026-03-14 20:14:08]   Games: 4,757
+[2026-03-14 20:14:08]   Building design matrix for 334 teams, 4757 games...
+[2026-03-14 20:14:08]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:08]   Home court advantage: 3.86 points
+[2026-03-14 20:14:08]   Strength range: -28.64 to 21.03
+[2026-03-14 20:14:08] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:08]      1. Team 1181: 21.03
+[2026-03-14 20:14:08]      2. Team 1400: 20.22
+[2026-03-14 20:14:08]      3. Team 1163: 19.78
+[2026-03-14 20:14:08]      4. Team 1437: 18.19
+[2026-03-14 20:14:08]      5. Team 1242: 17.68
+[2026-03-14 20:14:08] 
+Season 2006 - W:
+[2026-03-14 20:14:08]   No games found, skipping
+[2026-03-14 20:14:08] 
+Season 2007 - M:
+[2026-03-14 20:14:08]   Games: 5,043
+[2026-03-14 20:14:08]   Building design matrix for 336 teams, 5043 games...
+[2026-03-14 20:14:09]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:09]   Home court advantage: 4.11 points
+[2026-03-14 20:14:09]   Strength range: -19.29 to 24.73
+[2026-03-14 20:14:09] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:09]      1. Team 1314: 24.73
+[2026-03-14 20:14:09]      2. Team 1196: 21.23
+[2026-03-14 20:14:09]      3. Team 1242: 20.95
+[2026-03-14 20:14:09]      4. Team 1401: 19.71
+[2026-03-14 20:14:09]      5. Team 1326: 18.96
+[2026-03-14 20:14:09] 
+Season 2007 - W:
+[2026-03-14 20:14:09]   No games found, skipping
+[2026-03-14 20:14:09] 
+Season 2008 - M:
+[2026-03-14 20:14:09]   Games: 5,163
+[2026-03-14 20:14:09]   Building design matrix for 342 teams, 5163 games...
+[2026-03-14 20:14:09]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:09]   Home court advantage: 4.14 points
+[2026-03-14 20:14:09]   Strength range: -23.57 to 24.61
+[2026-03-14 20:14:09] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:09]      1. Team 1242: 24.61
+[2026-03-14 20:14:09]      2. Team 1314: 21.57
+[2026-03-14 20:14:09]      3. Team 1272: 20.99
+[2026-03-14 20:14:09]      4. Team 1181: 20.81
+[2026-03-14 20:14:09]      5. Team 1417: 20.16
+[2026-03-14 20:14:09] 
+Season 2008 - W:
+[2026-03-14 20:14:09]   No games found, skipping
+[2026-03-14 20:14:09] 
+Season 2009 - M:
+[2026-03-14 20:14:09]   Games: 5,249
+[2026-03-14 20:14:09]   Building design matrix for 347 teams, 5249 games...
+[2026-03-14 20:14:10]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:10]   Home court advantage: 3.63 points
+[2026-03-14 20:14:10]   Strength range: -22.89 to 22.35
+[2026-03-14 20:14:10] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:10]      1. Team 1314: 22.35
+[2026-03-14 20:14:10]      2. Team 1272: 20.26
+[2026-03-14 20:14:10]      3. Team 1338: 19.79
+[2026-03-14 20:14:10]      4. Team 1163: 19.23
+[2026-03-14 20:14:10]      5. Team 1211: 19.21
+[2026-03-14 20:14:10] 
+Season 2009 - W:
+[2026-03-14 20:14:10]   No games found, skipping
+[2026-03-14 20:14:10] 
+Season 2010 - M:
+[2026-03-14 20:14:10]   Games: 5,263
+[2026-03-14 20:14:10]   Building design matrix for 347 teams, 5263 games...
+[2026-03-14 20:14:10]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:10]   Home court advantage: 3.75 points
+[2026-03-14 20:14:10]   Strength range: -25.47 to 24.10
+[2026-03-14 20:14:10] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:10]      1. Team 1242: 24.10
+[2026-03-14 20:14:10]      2. Team 1181: 23.32
+[2026-03-14 20:14:10]      3. Team 1393: 19.91
+[2026-03-14 20:14:10]      4. Team 1140: 18.79
+[2026-03-14 20:14:10]      5. Team 1246: 18.58
+[2026-03-14 20:14:10] 
+Season 2010 - W:
+[2026-03-14 20:14:10]   Games: 5,037
+[2026-03-14 20:14:10]   Building design matrix for 343 teams, 5037 games...
+[2026-03-14 20:14:10]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:10]   Home court advantage: 3.71 points
+[2026-03-14 20:14:10]   Strength range: -32.50 to 45.65
+[2026-03-14 20:14:10] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:10]      1. Team 3163: 45.65
+[2026-03-14 20:14:10]      2. Team 3390: 34.47
+[2026-03-14 20:14:10]      3. Team 3397: 30.24
+[2026-03-14 20:14:10]      4. Team 3304: 28.83
+[2026-03-14 20:14:10]      5. Team 3401: 27.58
+[2026-03-14 20:14:10] 
+Season 2011 - M:
+[2026-03-14 20:14:10]   Games: 5,246
+[2026-03-14 20:14:10]   Building design matrix for 345 teams, 5246 games...
+[2026-03-14 20:14:11]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:11]   Home court advantage: 3.65 points
+[2026-03-14 20:14:11]   Strength range: -24.60 to 22.66
+[2026-03-14 20:14:11] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:11]      1. Team 1326: 22.66
+[2026-03-14 20:14:11]      2. Team 1181: 22.35
+[2026-03-14 20:14:11]      3. Team 1242: 22.28
+[2026-03-14 20:14:11]      4. Team 1400: 18.87
+[2026-03-14 20:14:11]      5. Team 1338: 18.54
+[2026-03-14 20:14:11] 
+Season 2011 - W:
+[2026-03-14 20:14:11]   Games: 5,084
+[2026-03-14 20:14:11]   Building design matrix for 343 teams, 5084 games...
+[2026-03-14 20:14:11]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:11]   Home court advantage: 3.66 points
+[2026-03-14 20:14:11]   Strength range: -31.63 to 41.33
+[2026-03-14 20:14:11] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:11]      1. Team 3163: 41.33
+[2026-03-14 20:14:11]      2. Team 3124: 37.98
+[2026-03-14 20:14:11]      3. Team 3390: 36.62
+[2026-03-14 20:14:11]      4. Team 3401: 35.10
+[2026-03-14 20:14:11]      5. Team 3397: 34.80
+[2026-03-14 20:14:11] 
+Season 2012 - M:
+[2026-03-14 20:14:11]   Games: 5,253
+[2026-03-14 20:14:11]   Building design matrix for 345 teams, 5253 games...
+[2026-03-14 20:14:12]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:12]   Home court advantage: 3.82 points
+[2026-03-14 20:14:12]   Strength range: -22.49 to 21.74
+[2026-03-14 20:14:12] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:12]      1. Team 1246: 21.74
+[2026-03-14 20:14:12]      2. Team 1326: 21.44
+[2026-03-14 20:14:12]      3. Team 1277: 19.64
+[2026-03-14 20:14:12]      4. Team 1314: 19.60
+[2026-03-14 20:14:12]      5. Team 1242: 19.27
+[2026-03-14 20:14:12] 
+Season 2012 - W:
+[2026-03-14 20:14:12]   Games: 5,050
+[2026-03-14 20:14:12]   Building design matrix for 342 teams, 5050 games...
+[2026-03-14 20:14:12]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:12]   Home court advantage: 3.46 points
+[2026-03-14 20:14:12]   Strength range: -33.37 to 42.28
+[2026-03-14 20:14:12] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:12]      1. Team 3163: 42.28
+[2026-03-14 20:14:12]      2. Team 3124: 39.59
+[2026-03-14 20:14:12]      3. Team 3323: 39.15
+[2026-03-14 20:14:12]      4. Team 3390: 31.59
+[2026-03-14 20:14:12]      5. Team 3181: 29.85
+[2026-03-14 20:14:12] 
+Season 2013 - M:
+[2026-03-14 20:14:12]   Games: 5,320
+[2026-03-14 20:14:12]   Building design matrix for 347 teams, 5320 games...
+[2026-03-14 20:14:12]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:12]   Home court advantage: 3.68 points
+[2026-03-14 20:14:12]   Strength range: -31.41 to 22.62
+[2026-03-14 20:14:12] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:12]      1. Team 1231: 22.62
+[2026-03-14 20:14:12]      2. Team 1196: 22.33
+[2026-03-14 20:14:12]      3. Team 1257: 21.65
+[2026-03-14 20:14:12]      4. Team 1211: 19.72
+[2026-03-14 20:14:12]      5. Team 1181: 18.91
+[2026-03-14 20:14:12] 
+Season 2013 - W:
+[2026-03-14 20:14:12]   Games: 5,184
+[2026-03-14 20:14:12]   Building design matrix for 345 teams, 5184 games...
+[2026-03-14 20:14:13]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:13]   Home court advantage: 3.31 points
+[2026-03-14 20:14:13]   Strength range: -29.37 to 44.61
+[2026-03-14 20:14:13] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:13]      1. Team 3163: 44.61
+[2026-03-14 20:14:13]      2. Team 3124: 39.81
+[2026-03-14 20:14:13]      3. Team 3323: 34.88
+[2026-03-14 20:14:13]      4. Team 3181: 31.81
+[2026-03-14 20:14:13]      5. Team 3390: 29.19
+[2026-03-14 20:14:13] 
+Season 2014 - M:
+[2026-03-14 20:14:13]   Games: 5,362
+[2026-03-14 20:14:13]   Building design matrix for 351 teams, 5362 games...
+[2026-03-14 20:14:13]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:13]   Home court advantage: 3.24 points
+[2026-03-14 20:14:13]   Strength range: -20.51 to 23.14
+[2026-03-14 20:14:13] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:13]      1. Team 1257: 23.14
+[2026-03-14 20:14:13]      2. Team 1112: 21.24
+[2026-03-14 20:14:13]      3. Team 1242: 18.36
+[2026-03-14 20:14:13]      4. Team 1196: 18.34
+[2026-03-14 20:14:13]      5. Team 1437: 17.72
+[2026-03-14 20:14:13] 
+Season 2014 - W:
+[2026-03-14 20:14:13]   Games: 5,252
+[2026-03-14 20:14:13]   Building design matrix for 349 teams, 5252 games...
+[2026-03-14 20:14:14]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:14]   Home court advantage: 3.27 points
+[2026-03-14 20:14:14]   Strength range: -35.46 to 44.46
+[2026-03-14 20:14:14] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:14]      1. Team 3163: 44.46
+[2026-03-14 20:14:14]      2. Team 3323: 38.28
+[2026-03-14 20:14:14]      3. Team 3181: 31.34
+[2026-03-14 20:14:14]      4. Team 3124: 30.57
+[2026-03-14 20:14:14]      5. Team 3268: 29.69
+[2026-03-14 20:14:14] 
+Season 2015 - M:
+[2026-03-14 20:14:14]   Games: 5,354
+[2026-03-14 20:14:14]   Building design matrix for 351 teams, 5354 games...
+[2026-03-14 20:14:14]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:14]   Home court advantage: 3.37 points
+[2026-03-14 20:14:14]   Strength range: -26.65 to 26.07
+[2026-03-14 20:14:14] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:14]      1. Team 1246: 26.07
+[2026-03-14 20:14:14]      2. Team 1458: 22.23
+[2026-03-14 20:14:14]      3. Team 1112: 22.08
+[2026-03-14 20:14:14]      4. Team 1181: 21.36
+[2026-03-14 20:14:14]      5. Team 1437: 20.83
+[2026-03-14 20:14:14] 
+Season 2015 - W:
+[2026-03-14 20:14:14]   Games: 5,214
+[2026-03-14 20:14:14]   Building design matrix for 349 teams, 5214 games...
+[2026-03-14 20:14:14]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:14]   Home court advantage: 3.26 points
+[2026-03-14 20:14:14]   Strength range: -24.21 to 48.51
+[2026-03-14 20:14:14] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:14]      1. Team 3163: 48.51
+[2026-03-14 20:14:14]      2. Team 3323: 33.49
+[2026-03-14 20:14:14]      3. Team 3376: 32.11
+[2026-03-14 20:14:14]      4. Team 3268: 28.79
+[2026-03-14 20:14:14]      5. Team 3124: 28.45
+[2026-03-14 20:14:14] 
+Season 2016 - M:
+[2026-03-14 20:14:14]   Games: 5,369
+[2026-03-14 20:14:14]   Building design matrix for 351 teams, 5369 games...
+[2026-03-14 20:14:15]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:15]   Home court advantage: 3.42 points
+[2026-03-14 20:14:15]   Strength range: -19.17 to 21.23
+[2026-03-14 20:14:15] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:15]      1. Team 1242: 21.23
+[2026-03-14 20:14:15]      2. Team 1277: 21.11
+[2026-03-14 20:14:15]      3. Team 1452: 20.19
+[2026-03-14 20:14:15]      4. Team 1314: 19.98
+[2026-03-14 20:14:15]      5. Team 1438: 19.13
+[2026-03-14 20:14:15] 
+Season 2016 - W:
+[2026-03-14 20:14:15]   Games: 5,209
+[2026-03-14 20:14:15]   Building design matrix for 349 teams, 5209 games...
+[2026-03-14 20:14:15]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:15]   Home court advantage: 3.30 points
+[2026-03-14 20:14:15]   Strength range: -40.79 to 48.65
+[2026-03-14 20:14:15] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:15]      1. Team 3163: 48.65
+[2026-03-14 20:14:15]      2. Team 3124: 32.61
+[2026-03-14 20:14:15]      3. Team 3268: 32.57
+[2026-03-14 20:14:15]      4. Team 3323: 31.00
+[2026-03-14 20:14:15]      5. Team 3376: 29.09
+[2026-03-14 20:14:15] 
+Season 2017 - M:
+[2026-03-14 20:14:15]   Games: 5,395
+[2026-03-14 20:14:15]   Building design matrix for 351 teams, 5395 games...
+[2026-03-14 20:14:15]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:15]   Home court advantage: 3.06 points
+[2026-03-14 20:14:15]   Strength range: -22.46 to 23.92
+[2026-03-14 20:14:15] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:15]      1. Team 1211: 23.92
+[2026-03-14 20:14:15]      2. Team 1314: 22.17
+[2026-03-14 20:14:15]      3. Team 1452: 22.05
+[2026-03-14 20:14:15]      4. Team 1437: 21.99
+[2026-03-14 20:14:15]      5. Team 1246: 21.33
+[2026-03-14 20:14:15] 
+Season 2017 - W:
+[2026-03-14 20:14:16]   Games: 5,210
+[2026-03-14 20:14:16]   Building design matrix for 349 teams, 5210 games...
+[2026-03-14 20:14:16]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:16]   Home court advantage: 3.06 points
+[2026-03-14 20:14:16]   Strength range: -28.89 to 43.73
+[2026-03-14 20:14:16] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:16]      1. Team 3163: 43.73
+[2026-03-14 20:14:16]      2. Team 3124: 41.86
+[2026-03-14 20:14:16]      3. Team 3376: 32.55
+[2026-03-14 20:14:16]      4. Team 3323: 31.50
+[2026-03-14 20:14:16]      5. Team 3449: 31.29
+[2026-03-14 20:14:16] 
+Season 2018 - M:
+[2026-03-14 20:14:16]   Games: 5,405
+[2026-03-14 20:14:16]   Building design matrix for 351 teams, 5405 games...
+[2026-03-14 20:14:16]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:16]   Home court advantage: 3.57 points
+[2026-03-14 20:14:16]   Strength range: -20.84 to 23.18
+[2026-03-14 20:14:16] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:16]      1. Team 1437: 23.18
+[2026-03-14 20:14:16]      2. Team 1181: 22.18
+[2026-03-14 20:14:16]      3. Team 1345: 21.07
+[2026-03-14 20:14:16]      4. Team 1438: 20.95
+[2026-03-14 20:14:16]      5. Team 1277: 20.44
+[2026-03-14 20:14:16] 
+Season 2018 - W:
+[2026-03-14 20:14:16]   Games: 5,209
+[2026-03-14 20:14:16]   Building design matrix for 349 teams, 5209 games...
+[2026-03-14 20:14:17]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:17]   Home court advantage: 2.83 points
+[2026-03-14 20:14:17]   Strength range: -28.98 to 47.25
+[2026-03-14 20:14:17] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:17]      1. Team 3163: 47.25
+[2026-03-14 20:14:17]      2. Team 3124: 40.11
+[2026-03-14 20:14:17]      3. Team 3280: 34.88
+[2026-03-14 20:14:17]      4. Team 3323: 33.28
+[2026-03-14 20:14:17]      5. Team 3257: 30.86
+[2026-03-14 20:14:17] 
+Season 2019 - M:
+[2026-03-14 20:14:17]   Games: 5,463
+[2026-03-14 20:14:17]   Building design matrix for 353 teams, 5463 games...
+[2026-03-14 20:14:17]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:17]   Home court advantage: 3.31 points
+[2026-03-14 20:14:17]   Strength range: -22.87 to 26.25
+[2026-03-14 20:14:17] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:17]      1. Team 1211: 26.25
+[2026-03-14 20:14:17]      2. Team 1181: 24.99
+[2026-03-14 20:14:17]      3. Team 1438: 23.67
+[2026-03-14 20:14:17]      4. Team 1314: 22.37
+[2026-03-14 20:14:17]      5. Team 1277: 22.30
+[2026-03-14 20:14:17] 
+Season 2019 - W:
+[2026-03-14 20:14:17]   Games: 5,240
+[2026-03-14 20:14:17]   Building design matrix for 351 teams, 5240 games...
+[2026-03-14 20:14:18]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:18]   Home court advantage: 3.10 points
+[2026-03-14 20:14:18]   Strength range: -32.70 to 38.56
+[2026-03-14 20:14:18] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:18]      1. Team 3323: 38.56
+[2026-03-14 20:14:18]      2. Team 3124: 37.41
+[2026-03-14 20:14:18]      3. Team 3163: 36.64
+[2026-03-14 20:14:18]      4. Team 3280: 36.47
+[2026-03-14 20:14:18]      5. Team 3332: 34.15
+[2026-03-14 20:14:18] 
+Season 2020 - M:
+[2026-03-14 20:14:18]   Games: 5,328
+[2026-03-14 20:14:18]   Building design matrix for 353 teams, 5328 games...
+[2026-03-14 20:14:18]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:18]   Home court advantage: 3.54 points
+[2026-03-14 20:14:18]   Strength range: -26.22 to 21.58
+[2026-03-14 20:14:18] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:18]      1. Team 1242: 21.58
+[2026-03-14 20:14:18]      2. Team 1211: 20.52
+[2026-03-14 20:14:18]      3. Team 1181: 19.51
+[2026-03-14 20:14:18]      4. Team 1277: 18.54
+[2026-03-14 20:14:18]      5. Team 1124: 17.20
+[2026-03-14 20:14:18] 
+Season 2020 - W:
+[2026-03-14 20:14:18]   Games: 5,171
+[2026-03-14 20:14:18]   Building design matrix for 351 teams, 5171 games...
+[2026-03-14 20:14:18]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:18]   Home court advantage: 2.66 points
+[2026-03-14 20:14:18]   Strength range: -28.51 to 39.51
+[2026-03-14 20:14:18] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:18]      1. Team 3332: 39.51
+[2026-03-14 20:14:18]      2. Team 3124: 38.00
+[2026-03-14 20:14:18]      3. Team 3376: 37.92
+[2026-03-14 20:14:18]      4. Team 3268: 36.28
+[2026-03-14 20:14:18]      5. Team 3163: 35.03
+[2026-03-14 20:14:18] 
+Season 2021 - M:
+[2026-03-14 20:14:18]   Games: 3,855
+[2026-03-14 20:14:18]   Building design matrix for 347 teams, 3855 games...
+[2026-03-14 20:14:19]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:19]   Home court advantage: 2.51 points
+[2026-03-14 20:14:19]   Strength range: -33.33 to 24.80
+[2026-03-14 20:14:19] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:19]      1. Team 1211: 24.80
+[2026-03-14 20:14:19]      2. Team 1228: 21.21
+[2026-03-14 20:14:19]      3. Team 1124: 21.17
+[2026-03-14 20:14:19]      4. Team 1222: 19.63
+[2026-03-14 20:14:19]      5. Team 1234: 19.57
+[2026-03-14 20:14:19] 
+Season 2021 - W:
+[2026-03-14 20:14:19]   Games: 3,556
+[2026-03-14 20:14:19]   Building design matrix for 343 teams, 3556 games...
+[2026-03-14 20:14:19]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:19]   Home court advantage: 2.23 points
+[2026-03-14 20:14:19]   Strength range: -36.34 to 36.97
+[2026-03-14 20:14:19] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:19]      1. Team 3163: 36.97
+[2026-03-14 20:14:19]      2. Team 3390: 36.53
+[2026-03-14 20:14:19]      3. Team 3124: 34.07
+[2026-03-14 20:14:19]      4. Team 3376: 32.52
+[2026-03-14 20:14:19]      5. Team 3268: 30.93
+[2026-03-14 20:14:19] 
+Season 2022 - M:
+[2026-03-14 20:14:19]   Games: 5,345
+[2026-03-14 20:14:19]   Building design matrix for 358 teams, 5345 games...
+[2026-03-14 20:14:19]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:19]   Home court advantage: 2.80 points
+[2026-03-14 20:14:19]   Strength range: -21.00 to 24.30
+[2026-03-14 20:14:19] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:19]      1. Team 1211: 24.30
+[2026-03-14 20:14:19]      2. Team 1112: 21.28
+[2026-03-14 20:14:19]      3. Team 1222: 20.03
+[2026-03-14 20:14:19]      4. Team 1246: 19.43
+[2026-03-14 20:14:19]      5. Team 1124: 19.17
+[2026-03-14 20:14:19] 
+Season 2022 - W:
+[2026-03-14 20:14:19]   Games: 5,060
+[2026-03-14 20:14:19]   Building design matrix for 356 teams, 5060 games...
+[2026-03-14 20:14:20]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:20]   Home court advantage: 2.59 points
+[2026-03-14 20:14:20]   Strength range: -35.11 to 34.62
+[2026-03-14 20:14:20] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:20]      1. Team 3376: 34.62
+[2026-03-14 20:14:20]      2. Team 3301: 32.26
+[2026-03-14 20:14:20]      3. Team 3390: 31.04
+[2026-03-14 20:14:20]      4. Team 3163: 29.22
+[2026-03-14 20:14:20]      5. Team 3257: 27.67
+[2026-03-14 20:14:20] 
+Season 2023 - M:
+[2026-03-14 20:14:20]   Games: 5,602
+[2026-03-14 20:14:20]   Building design matrix for 363 teams, 5602 games...
+[2026-03-14 20:14:20]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:20]   Home court advantage: 3.57 points
+[2026-03-14 20:14:20]   Strength range: -21.40 to 21.01
+[2026-03-14 20:14:20] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:20]      1. Team 1104: 21.01
+[2026-03-14 20:14:20]      2. Team 1222: 20.67
+[2026-03-14 20:14:20]      3. Team 1417: 19.29
+[2026-03-14 20:14:20]      4. Team 1397: 18.92
+[2026-03-14 20:14:20]      5. Team 1163: 18.04
+[2026-03-14 20:14:20] 
+Season 2023 - W:
+[2026-03-14 20:14:20]   Games: 5,374
+[2026-03-14 20:14:20]   Building design matrix for 361 teams, 5374 games...
+[2026-03-14 20:14:21]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:21]   Home court advantage: 2.73 points
+[2026-03-14 20:14:21]   Strength range: -35.93 to 42.13
+[2026-03-14 20:14:21] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:21]      1. Team 3376: 42.13
+[2026-03-14 20:14:21]      2. Team 3261: 32.23
+[2026-03-14 20:14:21]      3. Team 3163: 31.72
+[2026-03-14 20:14:21]      4. Team 3390: 31.17
+[2026-03-14 20:14:21]      5. Team 3231: 31.10
+[2026-03-14 20:14:21] 
+Season 2024 - M:
+[2026-03-14 20:14:21]   Games: 5,607
+[2026-03-14 20:14:21]   Building design matrix for 362 teams, 5607 games...
+[2026-03-14 20:14:21]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:21]   Home court advantage: 3.17 points
+[2026-03-14 20:14:21]   Strength range: -23.13 to 23.37
+[2026-03-14 20:14:21] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:21]      1. Team 1222: 23.37
+[2026-03-14 20:14:21]      2. Team 1112: 22.15
+[2026-03-14 20:14:21]      3. Team 1163: 21.75
+[2026-03-14 20:14:21]      4. Team 1345: 21.56
+[2026-03-14 20:14:21]      5. Team 1120: 20.55
+[2026-03-14 20:14:21] 
+Season 2024 - W:
+[2026-03-14 20:14:21]   Games: 5,414
+[2026-03-14 20:14:21]   Building design matrix for 360 teams, 5414 games...
+[2026-03-14 20:14:21]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:21]   Home court advantage: 2.88 points
+[2026-03-14 20:14:21]   Strength range: -28.89 to 42.14
+[2026-03-14 20:14:21] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:21]      1. Team 3376: 42.14
+[2026-03-14 20:14:21]      2. Team 3163: 35.98
+[2026-03-14 20:14:21]      3. Team 3234: 34.36
+[2026-03-14 20:14:21]      4. Team 3400: 33.99
+[2026-03-14 20:14:21]      5. Team 3417: 31.83
+[2026-03-14 20:14:21] 
+Season 2025 - M:
+[2026-03-14 20:14:22]   Games: 5,641
+[2026-03-14 20:14:22]   Building design matrix for 364 teams, 5641 games...
+[2026-03-14 20:14:22]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:22]   Home court advantage: 3.29 points
+[2026-03-14 20:14:22]   Strength range: -30.98 to 26.97
+[2026-03-14 20:14:22] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:22]      1. Team 1181: 26.97
+[2026-03-14 20:14:22]      2. Team 1120: 25.99
+[2026-03-14 20:14:22]      3. Team 1222: 24.68
+[2026-03-14 20:14:22]      4. Team 1196: 24.61
+[2026-03-14 20:14:22]      5. Team 1104: 22.53
+[2026-03-14 20:14:22] 
+Season 2025 - W:
+[2026-03-14 20:14:22]   Games: 5,444
+[2026-03-14 20:14:22]   Building design matrix for 362 teams, 5444 games...
+[2026-03-14 20:14:22]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:22]   Home court advantage: 2.89 points
+[2026-03-14 20:14:22]   Strength range: -28.79 to 41.46
+[2026-03-14 20:14:22] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:22]      1. Team 3376: 41.46
+[2026-03-14 20:14:22]      2. Team 3163: 40.19
+[2026-03-14 20:14:22]      3. Team 3400: 38.76
+[2026-03-14 20:14:22]      4. Team 3323: 36.33
+[2026-03-14 20:14:22]      5. Team 3417: 35.49
+[2026-03-14 20:14:22] 
+Season 2026 - M:
+[2026-03-14 20:14:22]   Games: 5,149
+[2026-03-14 20:14:22]   Building design matrix for 365 teams, 5149 games...
+[2026-03-14 20:14:23]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:23]   Home court advantage: 2.97 points
+[2026-03-14 20:14:23]   Strength range: -25.53 to 30.13
+[2026-03-14 20:14:23] 
+  Top 5 teams by Bradley-Terry strength (M):
+[2026-03-14 20:14:23]      1. Team 1276: 30.13
+[2026-03-14 20:14:23]      2. Team 1181: 28.93
+[2026-03-14 20:14:23]      3. Team 1112: 26.38
+[2026-03-14 20:14:23]      4. Team 1196: 25.13
+[2026-03-14 20:14:23]      5. Team 1228: 23.64
+[2026-03-14 20:14:23] 
+Season 2026 - W:
+[2026-03-14 20:14:23]   Games: 5,065
+[2026-03-14 20:14:23]   Building design matrix for 363 teams, 5065 games...
+[2026-03-14 20:14:23]   Fitting Ridge regression (alpha=1.0)...
+[2026-03-14 20:14:23]   Home court advantage: 2.90 points
+[2026-03-14 20:14:23]   Strength range: -32.03 to 47.56
+[2026-03-14 20:14:23] 
+  Top 5 teams by Bradley-Terry strength (W):
+[2026-03-14 20:14:23]      1. Team 3163: 47.56
+[2026-03-14 20:14:23]      2. Team 3376: 44.26
+[2026-03-14 20:14:23]      3. Team 3417: 43.81
+[2026-03-14 20:14:23]      4. Team 3261: 43.64
+[2026-03-14 20:14:23]      5. Team 3400: 42.50
+[2026-03-14 20:14:23] 
+======================================================================
+            Computing Elo Ratings (per season, per gender)            
+======================================================================
+[2026-03-14 20:14:23] 
+Season 2003 - M:
+[2026-03-14 20:14:23]   Games: 4,616
+[2026-03-14 20:14:23]   Processed 4,616 Elo updates
+[2026-03-14 20:14:23]   Elo range: 1244 to 1795
+[2026-03-14 20:14:23] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:23]      1. Team 1246: 1794.79
+[2026-03-14 20:14:23]      2. Team 1338: 1728.25
+[2026-03-14 20:14:23]      3. Team 1112: 1724.09
+[2026-03-14 20:14:23]      4. Team 1451: 1715.82
+[2026-03-14 20:14:23]      5. Team 1462: 1712.14
+[2026-03-14 20:14:23] 
+Season 2003 - W:
+[2026-03-14 20:14:23]   No games found, skipping
+[2026-03-14 20:14:23] 
+Season 2004 - M:
+[2026-03-14 20:14:23]   Games: 4,571
+[2026-03-14 20:14:24]   Processed 4,571 Elo updates
+[2026-03-14 20:14:24]   Elo range: 1242 to 1767
+[2026-03-14 20:14:24] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:24]      1. Team 1390: 1766.80
+[2026-03-14 20:14:24]      2. Team 1386: 1756.82
+[2026-03-14 20:14:24]      3. Team 1246: 1749.79
+[2026-03-14 20:14:24]      4. Team 1211: 1748.32
+[2026-03-14 20:14:24]      5. Team 1329: 1747.61
+[2026-03-14 20:14:24] 
+Season 2004 - W:
+[2026-03-14 20:14:24]   No games found, skipping
+[2026-03-14 20:14:24] 
+Season 2005 - M:
+[2026-03-14 20:14:24]   Games: 4,675
+[2026-03-14 20:14:24]   Processed 4,675 Elo updates
+[2026-03-14 20:14:24]   Elo range: 1230 to 1788
+[2026-03-14 20:14:24] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:24]      1. Team 1228: 1788.22
+[2026-03-14 20:14:24]      2. Team 1257: 1746.74
+[2026-03-14 20:14:24]      3. Team 1334: 1734.35
+[2026-03-14 20:14:24]      4. Team 1314: 1733.16
+[2026-03-14 20:14:24]      5. Team 1449: 1728.65
+[2026-03-14 20:14:24] 
+Season 2005 - W:
+[2026-03-14 20:14:24]   No games found, skipping
+[2026-03-14 20:14:24] 
+Season 2006 - M:
+[2026-03-14 20:14:24]   Games: 4,757
+[2026-03-14 20:14:24]   Processed 4,757 Elo updates
+[2026-03-14 20:14:24]   Elo range: 1235 to 1768
+[2026-03-14 20:14:24] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:24]      1. Team 1181: 1768.12
+[2026-03-14 20:14:24]      2. Team 1272: 1743.19
+[2026-03-14 20:14:24]      3. Team 1163: 1741.10
+[2026-03-14 20:14:24]      4. Team 1437: 1731.78
+[2026-03-14 20:14:24]      5. Team 1211: 1731.24
+[2026-03-14 20:14:24] 
+Season 2006 - W:
+[2026-03-14 20:14:24]   No games found, skipping
+[2026-03-14 20:14:24] 
+Season 2007 - M:
+[2026-03-14 20:14:24]   Games: 5,043
+[2026-03-14 20:14:24]   Processed 5,043 Elo updates
+[2026-03-14 20:14:24]   Elo range: 1249 to 1781
+[2026-03-14 20:14:24] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:24]      1. Team 1326: 1780.92
+[2026-03-14 20:14:24]      2. Team 1242: 1764.70
+[2026-03-14 20:14:24]      3. Team 1272: 1755.26
+[2026-03-14 20:14:24]      4. Team 1207: 1741.64
+[2026-03-14 20:14:24]      5. Team 1356: 1735.04
+[2026-03-14 20:14:24] 
+Season 2007 - W:
+[2026-03-14 20:14:25]   No games found, skipping
+[2026-03-14 20:14:25] 
+Season 2008 - M:
+[2026-03-14 20:14:25]   Games: 5,163
+[2026-03-14 20:14:25]   Processed 5,163 Elo updates
+[2026-03-14 20:14:25]   Elo range: 1200 to 1804
+[2026-03-14 20:14:25] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:25]      1. Team 1314: 1803.63
+[2026-03-14 20:14:25]      2. Team 1272: 1785.99
+[2026-03-14 20:14:25]      3. Team 1417: 1778.18
+[2026-03-14 20:14:25]      4. Team 1242: 1761.62
+[2026-03-14 20:14:25]      5. Team 1458: 1750.09
+[2026-03-14 20:14:25] 
+Season 2008 - W:
+[2026-03-14 20:14:25]   No games found, skipping
+[2026-03-14 20:14:25] 
+Season 2009 - M:
+[2026-03-14 20:14:25]   Games: 5,249
+[2026-03-14 20:14:25]   Processed 5,249 Elo updates
+[2026-03-14 20:14:25]   Elo range: 1193 to 1783
+[2026-03-14 20:14:25] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:25]      1. Team 1272: 1782.91
+[2026-03-14 20:14:25]      2. Team 1257: 1758.14
+[2026-03-14 20:14:25]      3. Team 1181: 1738.29
+[2026-03-14 20:14:25]      4. Team 1314: 1735.50
+[2026-03-14 20:14:25]      5. Team 1338: 1730.21
+[2026-03-14 20:14:25] 
+Season 2009 - W:
+[2026-03-14 20:14:25]   No games found, skipping
+[2026-03-14 20:14:25] 
+Season 2010 - M:
+[2026-03-14 20:14:25]   Games: 5,263
+[2026-03-14 20:14:25]   Processed 5,263 Elo updates
+[2026-03-14 20:14:25]   Elo range: 1232 to 1810
+[2026-03-14 20:14:25] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:25]      1. Team 1242: 1809.60
+[2026-03-14 20:14:25]      2. Team 1246: 1780.69
+[2026-03-14 20:14:25]      3. Team 1139: 1755.59
+[2026-03-14 20:14:25]      4. Team 1396: 1755.32
+[2026-03-14 20:14:25]      5. Team 1181: 1748.20
+[2026-03-14 20:14:25] 
+Season 2010 - W:
+[2026-03-14 20:14:25]   Games: 5,037
+[2026-03-14 20:14:26]   Processed 5,037 Elo updates
+[2026-03-14 20:14:26]   Elo range: 1210 to 1857
+[2026-03-14 20:14:26] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:26]      1. Team 3163: 1857.43
+[2026-03-14 20:14:26]      2. Team 3390: 1801.08
+[2026-03-14 20:14:26]      3. Team 3397: 1800.62
+[2026-03-14 20:14:26]      4. Team 3304: 1792.42
+[2026-03-14 20:14:26]      5. Team 3462: 1745.56
+[2026-03-14 20:14:26] 
+Season 2011 - M:
+[2026-03-14 20:14:26]   Games: 5,246
+[2026-03-14 20:14:26]   Processed 5,246 Elo updates
+[2026-03-14 20:14:26]   Elo range: 1239 to 1793
+[2026-03-14 20:14:26] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:26]      1. Team 1242: 1792.98
+[2026-03-14 20:14:26]      2. Team 1361: 1786.15
+[2026-03-14 20:14:26]      3. Team 1326: 1778.05
+[2026-03-14 20:14:26]      4. Team 1429: 1748.83
+[2026-03-14 20:14:26]      5. Team 1181: 1745.62
+[2026-03-14 20:14:26] 
+Season 2011 - W:
+[2026-03-14 20:14:26]   Games: 5,084
+[2026-03-14 20:14:26]   Processed 5,084 Elo updates
+[2026-03-14 20:14:26]   Elo range: 1208 to 1830
+[2026-03-14 20:14:26] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:26]      1. Team 3163: 1830.28
+[2026-03-14 20:14:26]      2. Team 3397: 1809.08
+[2026-03-14 20:14:26]      3. Team 3124: 1806.71
+[2026-03-14 20:14:26]      4. Team 3390: 1796.82
+[2026-03-14 20:14:26]      5. Team 3462: 1779.15
+[2026-03-14 20:14:26] 
+Season 2012 - M:
+[2026-03-14 20:14:26]   Games: 5,253
+[2026-03-14 20:14:26]   Processed 5,253 Elo updates
+[2026-03-14 20:14:26]   Elo range: 1230 to 1782
+[2026-03-14 20:14:26] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:26]      1. Team 1246: 1782.07
+[2026-03-14 20:14:26]      2. Team 1393: 1774.89
+[2026-03-14 20:14:26]      3. Team 1293: 1754.26
+[2026-03-14 20:14:26]      4. Team 1281: 1747.23
+[2026-03-14 20:14:26]      5. Team 1314: 1737.81
+[2026-03-14 20:14:26] 
+Season 2012 - W:
+[2026-03-14 20:14:26]   Games: 5,050
+[2026-03-14 20:14:27]   Processed 5,050 Elo updates
+[2026-03-14 20:14:27]   Elo range: 1200 to 1844
+[2026-03-14 20:14:27] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:27]      1. Team 3124: 1843.74
+[2026-03-14 20:14:27]      2. Team 3174: 1808.02
+[2026-03-14 20:14:27]      3. Team 3390: 1807.35
+[2026-03-14 20:14:27]      4. Team 3323: 1787.16
+[2026-03-14 20:14:27]      5. Team 3268: 1766.55
+[2026-03-14 20:14:27] 
+Season 2013 - M:
+[2026-03-14 20:14:27]   Games: 5,320
+[2026-03-14 20:14:27]   Processed 5,320 Elo updates
+[2026-03-14 20:14:27]   Elo range: 1198 to 1782
+[2026-03-14 20:14:27] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:27]      1. Team 1211: 1781.77
+[2026-03-14 20:14:27]      2. Team 1257: 1758.98
+[2026-03-14 20:14:27]      3. Team 1272: 1756.28
+[2026-03-14 20:14:27]      4. Team 1307: 1745.92
+[2026-03-14 20:14:27]      5. Team 1387: 1730.17
+[2026-03-14 20:14:27] 
+Season 2013 - W:
+[2026-03-14 20:14:27]   Games: 5,184
+[2026-03-14 20:14:27]   Processed 5,184 Elo updates
+[2026-03-14 20:14:27]   Elo range: 1213 to 1837
+[2026-03-14 20:14:27] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:27]      1. Team 3124: 1836.80
+[2026-03-14 20:14:27]      2. Team 3323: 1833.60
+[2026-03-14 20:14:27]      3. Team 3390: 1804.61
+[2026-03-14 20:14:27]      4. Team 3181: 1788.92
+[2026-03-14 20:14:27]      5. Team 3174: 1772.21
+[2026-03-14 20:14:27] 
+Season 2014 - M:
+[2026-03-14 20:14:27]   Games: 5,362
+[2026-03-14 20:14:28]   Processed 5,362 Elo updates
+[2026-03-14 20:14:28]   Elo range: 1244 to 1809
+[2026-03-14 20:14:28] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:28]      1. Team 1196: 1808.59
+[2026-03-14 20:14:28]      2. Team 1455: 1802.38
+[2026-03-14 20:14:28]      3. Team 1372: 1758.47
+[2026-03-14 20:14:28]      4. Team 1257: 1740.87
+[2026-03-14 20:14:28]      5. Team 1438: 1738.61
+[2026-03-14 20:14:28] 
+Season 2014 - W:
+[2026-03-14 20:14:28]   Games: 5,252
+[2026-03-14 20:14:28]   Processed 5,252 Elo updates
+[2026-03-14 20:14:28]   Elo range: 1217 to 1857
+[2026-03-14 20:14:28] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:28]      1. Team 3323: 1856.64
+[2026-03-14 20:14:28]      2. Team 3163: 1841.48
+[2026-03-14 20:14:28]      3. Team 3292: 1779.86
+[2026-03-14 20:14:28]      4. Team 3257: 1779.67
+[2026-03-14 20:14:28]      5. Team 3390: 1759.38
+[2026-03-14 20:14:28] 
+Season 2015 - M:
+[2026-03-14 20:14:28]   Games: 5,354
+[2026-03-14 20:14:28]   Processed 5,354 Elo updates
+[2026-03-14 20:14:28]   Elo range: 1201 to 1823
+[2026-03-14 20:14:28] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:28]      1. Team 1246: 1822.80
+[2026-03-14 20:14:28]      2. Team 1437: 1795.47
+[2026-03-14 20:14:28]      3. Team 1458: 1787.64
+[2026-03-14 20:14:28]      4. Team 1112: 1775.17
+[2026-03-14 20:14:28]      5. Team 1211: 1764.37
+[2026-03-14 20:14:28] 
+Season 2015 - W:
+[2026-03-14 20:14:28]   Games: 5,214
+[2026-03-14 20:14:28]   Processed 5,214 Elo updates
+[2026-03-14 20:14:28]   Elo range: 1243 to 1814
+[2026-03-14 20:14:28] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:28]      1. Team 3163: 1813.79
+[2026-03-14 20:14:28]      2. Team 3268: 1805.16
+[2026-03-14 20:14:28]      3. Team 3323: 1804.21
+[2026-03-14 20:14:28]      4. Team 3343: 1801.50
+[2026-03-14 20:14:28]      5. Team 3376: 1794.79
+[2026-03-14 20:14:28] 
+Season 2016 - M:
+[2026-03-14 20:14:28]   Games: 5,369
+[2026-03-14 20:14:29]   Processed 5,369 Elo updates
+[2026-03-14 20:14:29]   Elo range: 1241 to 1781
+[2026-03-14 20:14:29] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:29]      1. Team 1242: 1780.76
+[2026-03-14 20:14:29]      2. Team 1277: 1742.88
+[2026-03-14 20:14:29]      3. Team 1437: 1740.36
+[2026-03-14 20:14:29]      4. Team 1332: 1733.47
+[2026-03-14 20:14:29]      5. Team 1314: 1731.61
+[2026-03-14 20:14:29] 
+Season 2016 - W:
+[2026-03-14 20:14:29]   Games: 5,209
+[2026-03-14 20:14:29]   Processed 5,209 Elo updates
+[2026-03-14 20:14:29]   Elo range: 1230 to 1838
+[2026-03-14 20:14:29] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:29]      1. Team 3323: 1837.68
+[2026-03-14 20:14:29]      2. Team 3163: 1826.68
+[2026-03-14 20:14:29]      3. Team 3124: 1825.32
+[2026-03-14 20:14:29]      4. Team 3376: 1816.66
+[2026-03-14 20:14:29]      5. Team 3268: 1771.40
+[2026-03-14 20:14:29] 
+Season 2017 - M:
+[2026-03-14 20:14:29]   Games: 5,395
+[2026-03-14 20:14:29]   Processed 5,395 Elo updates
+[2026-03-14 20:14:29]   Elo range: 1213 to 1777
+[2026-03-14 20:14:29] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:29]      1. Team 1211: 1777.20
+[2026-03-14 20:14:29]      2. Team 1437: 1776.33
+[2026-03-14 20:14:29]      3. Team 1374: 1769.10
+[2026-03-14 20:14:29]      4. Team 1112: 1764.38
+[2026-03-14 20:14:29]      5. Team 1246: 1750.53
+[2026-03-14 20:14:29] 
+Season 2017 - W:
+[2026-03-14 20:14:29]   Games: 5,210
+[2026-03-14 20:14:29]   Processed 5,210 Elo updates
+[2026-03-14 20:14:29]   Elo range: 1208 to 1837
+[2026-03-14 20:14:29] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:29]      1. Team 3163: 1837.39
+[2026-03-14 20:14:29]      2. Team 3323: 1802.73
+[2026-03-14 20:14:29]      3. Team 3268: 1766.89
+[2026-03-14 20:14:29]      4. Team 3124: 1761.92
+[2026-03-14 20:14:29]      5. Team 3390: 1758.89
+[2026-03-14 20:14:29] 
+Season 2018 - M:
+[2026-03-14 20:14:29]   Games: 5,405
+[2026-03-14 20:14:30]   Processed 5,405 Elo updates
+[2026-03-14 20:14:30]   Elo range: 1244 to 1797
+[2026-03-14 20:14:30] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:30]      1. Team 1438: 1797.37
+[2026-03-14 20:14:30]      2. Team 1437: 1763.94
+[2026-03-14 20:14:30]      3. Team 1153: 1759.23
+[2026-03-14 20:14:30]      4. Team 1211: 1750.54
+[2026-03-14 20:14:30]      5. Team 1276: 1730.36
+[2026-03-14 20:14:30] 
+Season 2018 - W:
+[2026-03-14 20:14:30]   Games: 5,209
+[2026-03-14 20:14:30]   Processed 5,209 Elo updates
+[2026-03-14 20:14:30]   Elo range: 1222 to 1842
+[2026-03-14 20:14:30] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:30]      1. Team 3163: 1841.73
+[2026-03-14 20:14:30]      2. Team 3124: 1816.93
+[2026-03-14 20:14:30]      3. Team 3257: 1808.42
+[2026-03-14 20:14:30]      4. Team 3280: 1799.18
+[2026-03-14 20:14:30]      5. Team 3323: 1794.06
+[2026-03-14 20:14:30] 
+Season 2019 - M:
+[2026-03-14 20:14:30]   Games: 5,463
+[2026-03-14 20:14:30]   Processed 5,463 Elo updates
+[2026-03-14 20:14:30]   Elo range: 1250 to 1773
+[2026-03-14 20:14:30] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:30]      1. Team 1138: 1773.15
+[2026-03-14 20:14:30]      2. Team 1438: 1762.40
+[2026-03-14 20:14:30]      3. Team 1222: 1755.89
+[2026-03-14 20:14:30]      4. Team 1459: 1755.81
+[2026-03-14 20:14:30]      5. Team 1181: 1753.74
+[2026-03-14 20:14:30] 
+Season 2019 - W:
+[2026-03-14 20:14:30]   Games: 5,240
+[2026-03-14 20:14:31]   Processed 5,240 Elo updates
+[2026-03-14 20:14:31]   Elo range: 1236 to 1823
+[2026-03-14 20:14:31] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:31]      1. Team 3124: 1822.80
+[2026-03-14 20:14:31]      2. Team 3323: 1807.93
+[2026-03-14 20:14:31]      3. Team 3163: 1807.19
+[2026-03-14 20:14:31]      4. Team 3280: 1791.87
+[2026-03-14 20:14:31]      5. Team 3257: 1771.06
+[2026-03-14 20:14:31] 
+Season 2020 - M:
+[2026-03-14 20:14:31]   Games: 5,328
+[2026-03-14 20:14:31]   Processed 5,328 Elo updates
+[2026-03-14 20:14:31]   Elo range: 1222 to 1783
+[2026-03-14 20:14:31] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:31]      1. Team 1211: 1783.14
+[2026-03-14 20:14:31]      2. Team 1173: 1776.03
+[2026-03-14 20:14:31]      3. Team 1242: 1771.12
+[2026-03-14 20:14:31]      4. Team 1361: 1739.54
+[2026-03-14 20:14:31]      5. Team 1190: 1730.93
+[2026-03-14 20:14:31] 
+Season 2020 - W:
+[2026-03-14 20:14:31]   Games: 5,171
+[2026-03-14 20:14:31]   Processed 5,171 Elo updates
+[2026-03-14 20:14:31]   Elo range: 1229 to 1837
+[2026-03-14 20:14:31] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:31]      1. Team 3332: 1837.29
+[2026-03-14 20:14:31]      2. Team 3376: 1833.52
+[2026-03-14 20:14:31]      3. Team 3268: 1775.80
+[2026-03-14 20:14:31]      4. Team 3343: 1771.23
+[2026-03-14 20:14:31]      5. Team 3124: 1770.58
+[2026-03-14 20:14:31] 
+Season 2021 - M:
+[2026-03-14 20:14:31]   Games: 3,855
+[2026-03-14 20:14:31]   Processed 3,855 Elo updates
+[2026-03-14 20:14:31]   Elo range: 1269 to 1767
+[2026-03-14 20:14:31] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:31]      1. Team 1211: 1767.14
+[2026-03-14 20:14:31]      2. Team 1228: 1713.70
+[2026-03-14 20:14:31]      3. Team 1457: 1708.87
+[2026-03-14 20:14:31]      4. Team 1124: 1707.89
+[2026-03-14 20:14:31]      5. Team 1361: 1706.99
+[2026-03-14 20:14:31] 
+Season 2021 - W:
+[2026-03-14 20:14:31]   Games: 3,556
+[2026-03-14 20:14:32]   Processed 3,556 Elo updates
+[2026-03-14 20:14:32]   Elo range: 1251 to 1759
+[2026-03-14 20:14:32] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:32]      1. Team 3163: 1759.44
+[2026-03-14 20:14:32]      2. Team 3390: 1757.92
+[2026-03-14 20:14:32]      3. Team 3124: 1749.46
+[2026-03-14 20:14:32]      4. Team 3268: 1741.79
+[2026-03-14 20:14:32]      5. Team 3211: 1726.74
+[2026-03-14 20:14:32] 
+Season 2022 - M:
+[2026-03-14 20:14:32]   Games: 5,345
+[2026-03-14 20:14:32]   Processed 5,345 Elo updates
+[2026-03-14 20:14:32]   Elo range: 1231 to 1772
+[2026-03-14 20:14:32] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:32]      1. Team 1112: 1771.65
+[2026-03-14 20:14:32]      2. Team 1293: 1750.56
+[2026-03-14 20:14:32]      3. Team 1355: 1738.98
+[2026-03-14 20:14:32]      4. Team 1211: 1732.39
+[2026-03-14 20:14:32]      5. Team 1437: 1731.57
+[2026-03-14 20:14:32] 
+Season 2022 - W:
+[2026-03-14 20:14:32]   Games: 5,060
+[2026-03-14 20:14:32]   Processed 5,060 Elo updates
+[2026-03-14 20:14:32]   Elo range: 1223 to 1788
+[2026-03-14 20:14:32] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:32]      1. Team 3301: 1787.59
+[2026-03-14 20:14:32]      2. Team 3390: 1785.39
+[2026-03-14 20:14:32]      3. Team 3376: 1782.74
+[2026-03-14 20:14:32]      4. Team 3416: 1751.41
+[2026-03-14 20:14:32]      5. Team 3400: 1744.78
+[2026-03-14 20:14:32] 
+Season 2023 - M:
+[2026-03-14 20:14:32]   Games: 5,602
+[2026-03-14 20:14:32]   Processed 5,602 Elo updates
+[2026-03-14 20:14:32]   Elo range: 1250 to 1753
+[2026-03-14 20:14:32] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:32]      1. Team 1194: 1752.73
+[2026-03-14 20:14:32]      2. Team 1104: 1749.45
+[2026-03-14 20:14:32]      3. Team 1222: 1748.14
+[2026-03-14 20:14:32]      4. Team 1266: 1736.71
+[2026-03-14 20:14:32]      5. Team 1158: 1734.08
+[2026-03-14 20:14:32] 
+Season 2023 - W:
+[2026-03-14 20:14:32]   Games: 5,374
+[2026-03-14 20:14:33]   Processed 5,374 Elo updates
+[2026-03-14 20:14:33]   Elo range: 1207 to 1847
+[2026-03-14 20:14:33] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:33]      1. Team 3376: 1847.29
+[2026-03-14 20:14:33]      2. Team 3439: 1770.26
+[2026-03-14 20:14:33]      3. Team 3163: 1767.21
+[2026-03-14 20:14:33]      4. Team 3261: 1757.66
+[2026-03-14 20:14:33]      5. Team 3405: 1756.46
+[2026-03-14 20:14:33] 
+Season 2024 - M:
+[2026-03-14 20:14:33]   Games: 5,607
+[2026-03-14 20:14:33]   Processed 5,607 Elo updates
+[2026-03-14 20:14:33]   Elo range: 1237 to 1776
+[2026-03-14 20:14:33] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:33]      1. Team 1163: 1775.84
+[2026-03-14 20:14:33]      2. Team 1222: 1758.52
+[2026-03-14 20:14:33]      3. Team 1345: 1733.49
+[2026-03-14 20:14:33]      4. Team 1235: 1721.44
+[2026-03-14 20:14:33]      5. Team 1241: 1720.06
+[2026-03-14 20:14:33] 
+Season 2024 - W:
+[2026-03-14 20:14:33]   Games: 5,414
+[2026-03-14 20:14:33]   Processed 5,414 Elo updates
+[2026-03-14 20:14:33]   Elo range: 1234 to 1845
+[2026-03-14 20:14:33] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:33]      1. Team 3376: 1845.21
+[2026-03-14 20:14:33]      2. Team 3193: 1777.85
+[2026-03-14 20:14:33]      3. Team 3424: 1767.25
+[2026-03-14 20:14:33]      4. Team 3400: 1765.89
+[2026-03-14 20:14:33]      5. Team 3163: 1764.64
+[2026-03-14 20:14:33] 
+Season 2025 - M:
+[2026-03-14 20:14:33]   Games: 5,641
+[2026-03-14 20:14:34]   Processed 5,641 Elo updates
+[2026-03-14 20:14:34]   Elo range: 1216 to 1784
+[2026-03-14 20:14:34] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:34]      1. Team 1222: 1783.79
+[2026-03-14 20:14:34]      2. Team 1196: 1779.07
+[2026-03-14 20:14:34]      3. Team 1181: 1776.67
+[2026-03-14 20:14:34]      4. Team 1471: 1757.49
+[2026-03-14 20:14:34]      5. Team 1385: 1755.89
+[2026-03-14 20:14:34] 
+Season 2025 - W:
+[2026-03-14 20:14:34]   Games: 5,444
+[2026-03-14 20:14:34]   Processed 5,444 Elo updates
+[2026-03-14 20:14:34]   Elo range: 1233 to 1814
+[2026-03-14 20:14:34] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:34]      1. Team 3417: 1813.52
+[2026-03-14 20:14:34]      2. Team 3400: 1808.45
+[2026-03-14 20:14:34]      3. Team 3376: 1806.40
+[2026-03-14 20:14:34]      4. Team 3163: 1805.99
+[2026-03-14 20:14:34]      5. Team 3425: 1785.11
+[2026-03-14 20:14:34] 
+Season 2026 - M:
+[2026-03-14 20:14:34]   Games: 5,149
+[2026-03-14 20:14:34]   Processed 5,149 Elo updates
+[2026-03-14 20:14:34]   Elo range: 1237 to 1774
+[2026-03-14 20:14:34] 
+  Top 5 teams by Elo (M):
+[2026-03-14 20:14:34]      1. Team 1276: 1774.14
+[2026-03-14 20:14:34]      2. Team 1181: 1772.44
+[2026-03-14 20:14:34]      3. Team 1275: 1759.87
+[2026-03-14 20:14:34]      4. Team 1112: 1757.19
+[2026-03-14 20:14:34]      5. Team 1163: 1739.24
+[2026-03-14 20:14:34] 
+Season 2026 - W:
+[2026-03-14 20:14:34]   Games: 5,065
+[2026-03-14 20:14:34]   Processed 5,065 Elo updates
+[2026-03-14 20:14:34]   Elo range: 1208 to 1817
+[2026-03-14 20:14:34] 
+  Top 5 teams by Elo (W):
+[2026-03-14 20:14:34]      1. Team 3163: 1817.18
+[2026-03-14 20:14:34]      2. Team 3376: 1799.59
+[2026-03-14 20:14:34]      3. Team 3417: 1798.96
+[2026-03-14 20:14:34]      4. Team 3400: 1764.97
+[2026-03-14 20:14:34]      5. Team 3435: 1750.00
+[2026-03-14 20:14:34] 
+======================================================================
+        Computing GLM Quality Ratings (per season, per gender)        
+======================================================================
+[2026-03-14 20:14:34] 
+Season 2003 - M:
+[2026-03-14 20:14:34]   Symmetric games: 9,232
+[2026-03-14 20:14:34]   Tournament teams: 65
+[2026-03-14 20:14:35]   Filtered to 3,364 games involving tournament teams
+[2026-03-14 20:14:35]   Fitting GLM with 326 unique teams...
+[2026-03-14 20:14:43]   GLM Quality range: -28.20 to 23.98
+[2026-03-14 20:14:43] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:14:43]      1. Team 1246: 23.98
+[2026-03-14 20:14:43]      2. Team 1242: 23.83
+[2026-03-14 20:14:43]      3. Team 1268: 23.19
+[2026-03-14 20:14:43]      4. Team 1112: 23.16
+[2026-03-14 20:14:43]      5. Team 1181: 22.92
+[2026-03-14 20:14:43] 
+Season 2003 - W:
+[2026-03-14 20:14:43]   No games found, skipping
+[2026-03-14 20:14:43] 
+Season 2004 - M:
+[2026-03-14 20:14:43]   Symmetric games: 9,142
+[2026-03-14 20:14:43]   Tournament teams: 65
+[2026-03-14 20:14:43]   Filtered to 3,332 games involving tournament teams
+[2026-03-14 20:14:43]   Fitting GLM with 326 unique teams...
+[2026-03-14 20:14:50]   GLM Quality range: -32.47 to 26.51
+[2026-03-14 20:14:50] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:14:50]      1. Team 1181: 26.51
+[2026-03-14 20:14:50]      2. Team 1163: 23.85
+[2026-03-14 20:14:50]      3. Team 1304: 23.78
+[2026-03-14 20:14:50]      4. Team 1329: 22.30
+[2026-03-14 20:14:50]      5. Team 1210: 22.11
+[2026-03-14 20:14:50] 
+Season 2004 - W:
+[2026-03-14 20:14:50]   No games found, skipping
+[2026-03-14 20:14:50] 
+Season 2005 - M:
+[2026-03-14 20:14:50]   Symmetric games: 9,350
+[2026-03-14 20:14:50]   Tournament teams: 65
+[2026-03-14 20:14:50]   Filtered to 3,420 games involving tournament teams
+[2026-03-14 20:14:50]   Fitting GLM with 329 unique teams...
+[2026-03-14 20:14:58]   GLM Quality range: -38.03 to 28.84
+[2026-03-14 20:14:58] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:14:58]      1. Team 1314: 28.84
+[2026-03-14 20:14:58]      2. Team 1181: 25.56
+[2026-03-14 20:14:58]      3. Team 1228: 25.14
+[2026-03-14 20:14:58]      4. Team 1257: 23.80
+[2026-03-14 20:14:58]      5. Team 1448: 23.57
+[2026-03-14 20:14:58] 
+Season 2005 - W:
+[2026-03-14 20:14:58]   No games found, skipping
+[2026-03-14 20:14:58] 
+Season 2006 - M:
+[2026-03-14 20:14:58]   Symmetric games: 9,514
+[2026-03-14 20:14:58]   Tournament teams: 65
+[2026-03-14 20:14:58]   Filtered to 3,412 games involving tournament teams
+[2026-03-14 20:14:58]   Fitting GLM with 333 unique teams...
+[2026-03-14 20:15:06]   GLM Quality range: -35.97 to 24.20
+[2026-03-14 20:15:06] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:15:06]      1. Team 1181: 24.20
+[2026-03-14 20:15:06]      2. Team 1163: 22.95
+[2026-03-14 20:15:06]      3. Team 1295: 22.42
+[2026-03-14 20:15:06]      4. Team 1437: 21.63
+[2026-03-14 20:15:06]      5. Team 1400: 21.39
+[2026-03-14 20:15:06] 
+Season 2006 - W:
+[2026-03-14 20:15:06]   No games found, skipping
+[2026-03-14 20:15:06] 
+Season 2007 - M:
+[2026-03-14 20:15:06]   Symmetric games: 10,086
+[2026-03-14 20:15:06]   Tournament teams: 65
+[2026-03-14 20:15:06]   Filtered to 3,588 games involving tournament teams
+[2026-03-14 20:15:06]   Fitting GLM with 334 unique teams...
+[2026-03-14 20:15:14]   GLM Quality range: -32.10 to 29.10
+[2026-03-14 20:15:14] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:15:14]      1. Team 1314: 29.10
+[2026-03-14 20:15:14]      2. Team 1196: 23.94
+[2026-03-14 20:15:14]      3. Team 1242: 23.60
+[2026-03-14 20:15:14]      4. Team 1401: 22.85
+[2026-03-14 20:15:14]      5. Team 1326: 21.74
+[2026-03-14 20:15:14] 
+Season 2007 - W:
+[2026-03-14 20:15:15]   No games found, skipping
+[2026-03-14 20:15:15] 
+Season 2008 - M:
+[2026-03-14 20:15:15]   Symmetric games: 10,326
+[2026-03-14 20:15:15]   Tournament teams: 65
+[2026-03-14 20:15:15]   Filtered to 3,578 games involving tournament teams
+[2026-03-14 20:15:15]   Fitting GLM with 342 unique teams...
+[2026-03-14 20:15:23]   GLM Quality range: -33.75 to 28.05
+[2026-03-14 20:15:23] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:15:23]      1. Team 1242: 28.05
+[2026-03-14 20:15:23]      2. Team 1272: 25.43
+[2026-03-14 20:15:23]      3. Team 1314: 23.70
+[2026-03-14 20:15:23]      4. Team 1417: 23.59
+[2026-03-14 20:15:23]      5. Team 1181: 23.08
+[2026-03-14 20:15:23] 
+Season 2008 - W:
+[2026-03-14 20:15:23]   No games found, skipping
+[2026-03-14 20:15:23] 
+Season 2009 - M:
+[2026-03-14 20:15:23]   Symmetric games: 10,498
+[2026-03-14 20:15:23]   Tournament teams: 65
+[2026-03-14 20:15:23]   Filtered to 3,584 games involving tournament teams
+[2026-03-14 20:15:23]   Fitting GLM with 346 unique teams...
+[2026-03-14 20:15:32]   GLM Quality range: -26.71 to 25.74
+[2026-03-14 20:15:32] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:15:32]      1. Team 1314: 25.74
+[2026-03-14 20:15:32]      2. Team 1211: 22.44
+[2026-03-14 20:15:32]      3. Team 1181: 21.84
+[2026-03-14 20:15:32]      4. Team 1281: 21.73
+[2026-03-14 20:15:32]      5. Team 1338: 21.63
+[2026-03-14 20:15:32] 
+Season 2009 - W:
+[2026-03-14 20:15:32]   No games found, skipping
+[2026-03-14 20:15:32] 
+Season 2010 - M:
+[2026-03-14 20:15:32]   Symmetric games: 10,526
+[2026-03-14 20:15:32]   Tournament teams: 65
+[2026-03-14 20:15:32]   Filtered to 3,636 games involving tournament teams
+[2026-03-14 20:15:32]   Fitting GLM with 346 unique teams...
+[2026-03-14 20:15:41]   GLM Quality range: -39.94 to 27.02
+[2026-03-14 20:15:41] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:15:41]      1. Team 1181: 27.02
+[2026-03-14 20:15:41]      2. Team 1242: 26.82
+[2026-03-14 20:15:41]      3. Team 1393: 22.98
+[2026-03-14 20:15:41]      4. Team 1246: 21.86
+[2026-03-14 20:15:41]      5. Team 1326: 21.67
+[2026-03-14 20:15:41] 
+Season 2010 - W:
+[2026-03-14 20:15:41]   Symmetric games: 10,074
+[2026-03-14 20:15:41]   Tournament teams: 64
+[2026-03-14 20:15:41]   Filtered to 3,414 games involving tournament teams
+[2026-03-14 20:15:41]   Fitting GLM with 343 unique teams...
+[2026-03-14 20:15:50]   GLM Quality range: -46.78 to 50.87
+[2026-03-14 20:15:50] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:15:50]      1. Team 3163: 50.87
+[2026-03-14 20:15:50]      2. Team 3390: 36.31
+[2026-03-14 20:15:50]      3. Team 3397: 34.48
+[2026-03-14 20:15:50]      4. Team 3304: 32.29
+[2026-03-14 20:15:50]      5. Team 3401: 30.24
+[2026-03-14 20:15:50] 
+Season 2011 - M:
+[2026-03-14 20:15:50]   Symmetric games: 10,492
+[2026-03-14 20:15:50]   Tournament teams: 68
+[2026-03-14 20:15:50]   Filtered to 3,718 games involving tournament teams
+[2026-03-14 20:15:50]   Fitting GLM with 344 unique teams...
+[2026-03-14 20:15:58]   GLM Quality range: -29.33 to 25.79
+[2026-03-14 20:15:58] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:15:58]      1. Team 1326: 25.79
+[2026-03-14 20:15:58]      2. Team 1181: 25.52
+[2026-03-14 20:15:58]      3. Team 1242: 24.89
+[2026-03-14 20:15:58]      4. Team 1449: 22.08
+[2026-03-14 20:15:58]      5. Team 1338: 21.67
+[2026-03-14 20:15:58] 
+Season 2011 - W:
+[2026-03-14 20:15:58]   Symmetric games: 10,168
+[2026-03-14 20:15:58]   Tournament teams: 64
+[2026-03-14 20:15:58]   Filtered to 3,408 games involving tournament teams
+[2026-03-14 20:15:58]   Fitting GLM with 343 unique teams...
+[2026-03-14 20:16:09]   GLM Quality range: -45.06 to 45.57
+[2026-03-14 20:16:09] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:16:09]      1. Team 3163: 45.57
+[2026-03-14 20:16:09]      2. Team 3124: 40.35
+[2026-03-14 20:16:09]      3. Team 3390: 40.10
+[2026-03-14 20:16:09]      4. Team 3397: 38.77
+[2026-03-14 20:16:09]      5. Team 3401: 37.40
+[2026-03-14 20:16:09] 
+Season 2012 - M:
+[2026-03-14 20:16:09]   Symmetric games: 10,506
+[2026-03-14 20:16:09]   Tournament teams: 68
+[2026-03-14 20:16:09]   Filtered to 3,754 games involving tournament teams
+[2026-03-14 20:16:09]   Fitting GLM with 345 unique teams...
+[2026-03-14 20:16:43]   GLM Quality range: -26.64 to 26.01
+[2026-03-14 20:16:43] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:16:43]      1. Team 1246: 26.01
+[2026-03-14 20:16:43]      2. Team 1326: 25.27
+[2026-03-14 20:16:43]      3. Team 1314: 24.17
+[2026-03-14 20:16:43]      4. Team 1277: 23.16
+[2026-03-14 20:16:43]      5. Team 1393: 22.22
+[2026-03-14 20:16:43] 
+Season 2012 - W:
+[2026-03-14 20:16:43]   Symmetric games: 10,100
+[2026-03-14 20:16:43]   Tournament teams: 64
+[2026-03-14 20:16:43]   Filtered to 3,350 games involving tournament teams
+[2026-03-14 20:16:43]   Fitting GLM with 341 unique teams...
+[2026-03-14 20:16:51]   GLM Quality range: -45.30 to 45.49
+[2026-03-14 20:16:51] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:16:51]      1. Team 3163: 45.49
+[2026-03-14 20:16:51]      2. Team 3124: 42.37
+[2026-03-14 20:16:51]      3. Team 3323: 41.16
+[2026-03-14 20:16:51]      4. Team 3390: 34.17
+[2026-03-14 20:16:51]      5. Team 3181: 31.54
+[2026-03-14 20:16:51] 
+Season 2013 - M:
+[2026-03-14 20:16:51]   Symmetric games: 10,640
+[2026-03-14 20:16:51]   Tournament teams: 68
+[2026-03-14 20:16:51]   Filtered to 3,788 games involving tournament teams
+[2026-03-14 20:16:51]   Fitting GLM with 346 unique teams...
+[2026-03-14 20:17:00]   GLM Quality range: -40.60 to 25.49
+[2026-03-14 20:17:00] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:17:00]      1. Team 1231: 25.49
+[2026-03-14 20:17:00]      2. Team 1257: 24.16
+[2026-03-14 20:17:00]      3. Team 1196: 23.86
+[2026-03-14 20:17:00]      4. Team 1181: 22.08
+[2026-03-14 20:17:00]      5. Team 1211: 21.38
+[2026-03-14 20:17:00] 
+Season 2013 - W:
+[2026-03-14 20:17:00]   Symmetric games: 10,368
+[2026-03-14 20:17:00]   Tournament teams: 64
+[2026-03-14 20:17:00]   Filtered to 3,414 games involving tournament teams
+[2026-03-14 20:17:00]   Fitting GLM with 344 unique teams...
+[2026-03-14 20:17:08]   GLM Quality range: -41.52 to 48.74
+[2026-03-14 20:17:08] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:17:08]      1. Team 3163: 48.74
+[2026-03-14 20:17:08]      2. Team 3124: 43.10
+[2026-03-14 20:17:08]      3. Team 3323: 37.96
+[2026-03-14 20:17:08]      4. Team 3181: 35.68
+[2026-03-14 20:17:08]      5. Team 3390: 33.20
+[2026-03-14 20:17:08] 
+Season 2014 - M:
+[2026-03-14 20:17:08]   Symmetric games: 10,724
+[2026-03-14 20:17:08]   Tournament teams: 68
+[2026-03-14 20:17:08]   Filtered to 3,774 games involving tournament teams
+[2026-03-14 20:17:08]   Fitting GLM with 351 unique teams...
+[2026-03-14 20:17:17]   GLM Quality range: -35.77 to 26.13
+[2026-03-14 20:17:17] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:17:17]      1. Team 1257: 26.13
+[2026-03-14 20:17:17]      2. Team 1112: 25.58
+[2026-03-14 20:17:17]      3. Team 1156: 22.53
+[2026-03-14 20:17:17]      4. Team 1242: 20.93
+[2026-03-14 20:17:17]      5. Team 1181: 20.93
+[2026-03-14 20:17:17] 
+Season 2014 - W:
+[2026-03-14 20:17:17]   Symmetric games: 10,504
+[2026-03-14 20:17:17]   Tournament teams: 64
+[2026-03-14 20:17:17]   Filtered to 3,486 games involving tournament teams
+[2026-03-14 20:17:17]   Fitting GLM with 349 unique teams...
+[2026-03-14 20:17:25]   GLM Quality range: -34.49 to 49.20
+[2026-03-14 20:17:25] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:17:25]      1. Team 3163: 49.20
+[2026-03-14 20:17:25]      2. Team 3323: 42.42
+[2026-03-14 20:17:25]      3. Team 3124: 35.58
+[2026-03-14 20:17:25]      4. Team 3181: 35.34
+[2026-03-14 20:17:25]      5. Team 3268: 33.31
+[2026-03-14 20:17:25] 
+Season 2015 - M:
+[2026-03-14 20:17:25]   Symmetric games: 10,708
+[2026-03-14 20:17:25]   Tournament teams: 68
+[2026-03-14 20:17:25]   Filtered to 3,768 games involving tournament teams
+[2026-03-14 20:17:25]   Fitting GLM with 351 unique teams...
+[2026-03-14 20:17:35]   GLM Quality range: -30.54 to 30.65
+[2026-03-14 20:17:35] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:17:35]      1. Team 1246: 30.65
+[2026-03-14 20:17:35]      2. Team 1181: 25.27
+[2026-03-14 20:17:35]      3. Team 1458: 25.10
+[2026-03-14 20:17:35]      4. Team 1112: 24.79
+[2026-03-14 20:17:35]      5. Team 1437: 24.44
+[2026-03-14 20:17:35] 
+Season 2015 - W:
+[2026-03-14 20:17:35]   Symmetric games: 10,428
+[2026-03-14 20:17:35]   Tournament teams: 64
+[2026-03-14 20:17:35]   Filtered to 3,472 games involving tournament teams
+[2026-03-14 20:17:35]   Fitting GLM with 349 unique teams...
+[2026-03-14 20:17:43]   GLM Quality range: -37.78 to 51.91
+[2026-03-14 20:17:43] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:17:43]      1. Team 3163: 51.91
+[2026-03-14 20:17:43]      2. Team 3323: 37.43
+[2026-03-14 20:17:43]      3. Team 3376: 34.66
+[2026-03-14 20:17:43]      4. Team 3268: 31.69
+[2026-03-14 20:17:43]      5. Team 3124: 31.50
+[2026-03-14 20:17:43] 
+Season 2016 - M:
+[2026-03-14 20:17:43]   Symmetric games: 10,738
+[2026-03-14 20:17:43]   Tournament teams: 68
+[2026-03-14 20:17:43]   Filtered to 3,720 games involving tournament teams
+[2026-03-14 20:17:43]   Fitting GLM with 351 unique teams...
+[2026-03-14 20:17:52]   GLM Quality range: -32.45 to 25.52
+[2026-03-14 20:17:52] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:17:52]      1. Team 1277: 25.52
+[2026-03-14 20:17:52]      2. Team 1242: 24.50
+[2026-03-14 20:17:52]      3. Team 1438: 23.77
+[2026-03-14 20:17:52]      4. Team 1314: 23.75
+[2026-03-14 20:17:52]      5. Team 1452: 22.71
+[2026-03-14 20:17:52] 
+Season 2016 - W:
+[2026-03-14 20:17:52]   Symmetric games: 10,418
+[2026-03-14 20:17:52]   Tournament teams: 64
+[2026-03-14 20:17:52]   Filtered to 3,458 games involving tournament teams
+[2026-03-14 20:17:52]   Fitting GLM with 349 unique teams...
+[2026-03-14 20:18:01]   GLM Quality range: -53.93 to 51.92
+[2026-03-14 20:18:01] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:18:01]      1. Team 3163: 51.92
+[2026-03-14 20:18:01]      2. Team 3124: 34.64
+[2026-03-14 20:18:01]      3. Team 3268: 34.46
+[2026-03-14 20:18:01]      4. Team 3323: 33.92
+[2026-03-14 20:18:01]      5. Team 3376: 32.94
+[2026-03-14 20:18:01] 
+Season 2017 - M:
+[2026-03-14 20:18:01]   Symmetric games: 10,790
+[2026-03-14 20:18:01]   Tournament teams: 68
+[2026-03-14 20:18:01]   Filtered to 3,772 games involving tournament teams
+[2026-03-14 20:18:01]   Fitting GLM with 351 unique teams...
+[2026-03-14 20:18:10]   GLM Quality range: -31.64 to 26.11
+[2026-03-14 20:18:10] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:18:10]      1. Team 1211: 26.11
+[2026-03-14 20:18:10]      2. Team 1314: 25.87
+[2026-03-14 20:18:10]      3. Team 1437: 25.83
+[2026-03-14 20:18:10]      4. Team 1257: 24.65
+[2026-03-14 20:18:10]      5. Team 1452: 24.15
+[2026-03-14 20:18:10] 
+Season 2017 - W:
+[2026-03-14 20:18:10]   Symmetric games: 10,420
+[2026-03-14 20:18:10]   Tournament teams: 64
+[2026-03-14 20:18:10]   Filtered to 3,458 games involving tournament teams
+[2026-03-14 20:18:10]   Fitting GLM with 349 unique teams...
+[2026-03-14 20:18:18]   GLM Quality range: -34.39 to 46.64
+[2026-03-14 20:18:18] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:18:18]      1. Team 3163: 46.64
+[2026-03-14 20:18:18]      2. Team 3124: 44.42
+[2026-03-14 20:18:18]      3. Team 3376: 35.25
+[2026-03-14 20:18:18]      4. Team 3449: 34.77
+[2026-03-14 20:18:18]      5. Team 3323: 34.51
+[2026-03-14 20:18:18] 
+Season 2018 - M:
+[2026-03-14 20:18:18]   Symmetric games: 10,810
+[2026-03-14 20:18:18]   Tournament teams: 68
+[2026-03-14 20:18:18]   Filtered to 3,758 games involving tournament teams
+[2026-03-14 20:18:18]   Fitting GLM with 351 unique teams...
+[2026-03-14 20:18:27]   GLM Quality range: -34.06 to 26.33
+[2026-03-14 20:18:27] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:18:27]      1. Team 1437: 26.33
+[2026-03-14 20:18:27]      2. Team 1181: 24.44
+[2026-03-14 20:18:27]      3. Team 1345: 24.21
+[2026-03-14 20:18:27]      4. Team 1438: 24.10
+[2026-03-14 20:18:27]      5. Team 1277: 22.82
+[2026-03-14 20:18:27] 
+Season 2018 - W:
+[2026-03-14 20:18:27]   Symmetric games: 10,418
+[2026-03-14 20:18:27]   Tournament teams: 64
+[2026-03-14 20:18:27]   Filtered to 3,438 games involving tournament teams
+[2026-03-14 20:18:27]   Fitting GLM with 349 unique teams...
+[2026-03-14 20:18:36]   GLM Quality range: -36.14 to 49.79
+[2026-03-14 20:18:36] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:18:36]      1. Team 3163: 49.79
+[2026-03-14 20:18:36]      2. Team 3124: 43.24
+[2026-03-14 20:18:36]      3. Team 3280: 38.73
+[2026-03-14 20:18:36]      4. Team 3323: 35.23
+[2026-03-14 20:18:36]      5. Team 3257: 33.80
+[2026-03-14 20:18:36] 
+Season 2019 - M:
+[2026-03-14 20:18:36]   Symmetric games: 10,926
+[2026-03-14 20:18:36]   Tournament teams: 68
+[2026-03-14 20:18:36]   Filtered to 3,828 games involving tournament teams
+[2026-03-14 20:18:36]   Fitting GLM with 353 unique teams...
+[2026-03-14 20:18:45]   GLM Quality range: -29.56 to 29.13
+[2026-03-14 20:18:45] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:18:45]      1. Team 1211: 29.13
+[2026-03-14 20:18:45]      2. Team 1181: 28.12
+[2026-03-14 20:18:45]      3. Team 1438: 26.58
+[2026-03-14 20:18:45]      4. Team 1314: 25.19
+[2026-03-14 20:18:45]      5. Team 1277: 25.18
+[2026-03-14 20:18:45] 
+Season 2019 - W:
+[2026-03-14 20:18:45]   Symmetric games: 10,480
+[2026-03-14 20:18:45]   Tournament teams: 64
+[2026-03-14 20:18:45]   Filtered to 3,468 games involving tournament teams
+[2026-03-14 20:18:45]   Fitting GLM with 351 unique teams...
+[2026-03-14 20:18:54]   GLM Quality range: -36.82 to 42.28
+[2026-03-14 20:18:54] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:18:54]      1. Team 3163: 42.28
+[2026-03-14 20:18:54]      2. Team 3323: 41.40
+[2026-03-14 20:18:54]      3. Team 3124: 40.55
+[2026-03-14 20:18:54]      4. Team 3280: 40.36
+[2026-03-14 20:18:54]      5. Team 3332: 36.48
+[2026-03-14 20:18:54] 
+Season 2020 - M:
+[2026-03-14 20:18:54]   Symmetric games: 10,656
+[2026-03-14 20:18:54]   Fitting GLM with 353 unique teams...
+[2026-03-14 20:19:15]   GLM Quality range: -28.86 to 25.17
+[2026-03-14 20:19:15] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:19:15]      1. Team 1242: 25.17
+[2026-03-14 20:19:15]      2. Team 1211: 22.91
+[2026-03-14 20:19:15]      3. Team 1181: 22.84
+[2026-03-14 20:19:15]      4. Team 1277: 22.13
+[2026-03-14 20:19:15]      5. Team 1124: 20.34
+[2026-03-14 20:19:15] 
+Season 2020 - W:
+[2026-03-14 20:19:15]   Symmetric games: 10,342
+[2026-03-14 20:19:15]   Fitting GLM with 351 unique teams...
+[2026-03-14 20:19:35]   GLM Quality range: -30.16 to 43.24
+[2026-03-14 20:19:35] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:19:35]      1. Team 3332: 43.24
+[2026-03-14 20:19:35]      2. Team 3124: 41.55
+[2026-03-14 20:19:35]      3. Team 3376: 41.49
+[2026-03-14 20:19:35]      4. Team 3268: 39.64
+[2026-03-14 20:19:35]      5. Team 3163: 38.18
+[2026-03-14 20:19:35] 
+Season 2021 - M:
+[2026-03-14 20:19:35]   Symmetric games: 7,710
+[2026-03-14 20:19:35]   Tournament teams: 68
+[2026-03-14 20:19:35]   Filtered to 2,848 games involving tournament teams
+[2026-03-14 20:19:35]   Fitting GLM with 333 unique teams...
+[2026-03-14 20:19:42]   GLM Quality range: -46.94 to 33.30
+[2026-03-14 20:19:42] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:19:42]      1. Team 1187: 33.30
+[2026-03-14 20:19:42]      2. Team 1211: 25.75
+[2026-03-14 20:19:42]      3. Team 1124: 25.70
+[2026-03-14 20:19:42]      4. Team 1222: 24.30
+[2026-03-14 20:19:42]      5. Team 1228: 23.40
+[2026-03-14 20:19:42] 
+Season 2021 - W:
+[2026-03-14 20:19:42]   Symmetric games: 7,112
+[2026-03-14 20:19:42]   Tournament teams: 64
+[2026-03-14 20:19:42]   Filtered to 2,530 games involving tournament teams
+[2026-03-14 20:19:42]   Fitting GLM with 327 unique teams...
+[2026-03-14 20:19:48]   GLM Quality range: -56.44 to 49.65
+[2026-03-14 20:19:48] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:19:48]      1. Team 3390: 49.65
+[2026-03-14 20:19:48]      2. Team 3417: 40.23
+[2026-03-14 20:19:48]      3. Team 3332: 37.76
+[2026-03-14 20:19:48]      4. Team 3112: 37.20
+[2026-03-14 20:19:48]      5. Team 3268: 36.89
+[2026-03-14 20:19:48] 
+Season 2022 - M:
+[2026-03-14 20:19:48]   Symmetric games: 10,690
+[2026-03-14 20:19:48]   Tournament teams: 68
+[2026-03-14 20:19:48]   Filtered to 3,718 games involving tournament teams
+[2026-03-14 20:19:48]   Fitting GLM with 358 unique teams...
+[2026-03-14 20:19:57]   GLM Quality range: -30.84 to 27.80
+[2026-03-14 20:19:57] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:19:57]      1. Team 1211: 27.80
+[2026-03-14 20:19:57]      2. Team 1222: 26.29
+[2026-03-14 20:19:57]      3. Team 1112: 25.32
+[2026-03-14 20:19:57]      4. Team 1124: 25.29
+[2026-03-14 20:19:57]      5. Team 1242: 24.57
+[2026-03-14 20:19:57] 
+Season 2022 - W:
+[2026-03-14 20:19:57]   Symmetric games: 10,120
+[2026-03-14 20:19:57]   Tournament teams: 68
+[2026-03-14 20:19:57]   Filtered to 3,482 games involving tournament teams
+[2026-03-14 20:19:57]   Fitting GLM with 356 unique teams...
+[2026-03-14 20:20:06]   GLM Quality range: -44.95 to 38.45
+[2026-03-14 20:20:06] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:20:06]      1. Team 3376: 38.45
+[2026-03-14 20:20:06]      2. Team 3301: 35.80
+[2026-03-14 20:20:06]      3. Team 3390: 35.46
+[2026-03-14 20:20:06]      4. Team 3400: 31.51
+[2026-03-14 20:20:06]      5. Team 3163: 31.46
+[2026-03-14 20:20:06] 
+Season 2023 - M:
+[2026-03-14 20:20:06]   Symmetric games: 11,204
+[2026-03-14 20:20:06]   Tournament teams: 68
+[2026-03-14 20:20:06]   Filtered to 3,770 games involving tournament teams
+[2026-03-14 20:20:06]   Fitting GLM with 363 unique teams...
+[2026-03-14 20:20:16]   GLM Quality range: -28.04 to 23.63
+[2026-03-14 20:20:16] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:20:16]      1. Team 1417: 23.63
+[2026-03-14 20:20:16]      2. Team 1104: 22.87
+[2026-03-14 20:20:16]      3. Team 1222: 22.80
+[2026-03-14 20:20:16]      4. Team 1397: 21.34
+[2026-03-14 20:20:16]      5. Team 1112: 21.28
+[2026-03-14 20:20:16] 
+Season 2023 - W:
+[2026-03-14 20:20:16]   Symmetric games: 10,748
+[2026-03-14 20:20:16]   Tournament teams: 68
+[2026-03-14 20:20:16]   Filtered to 3,630 games involving tournament teams
+[2026-03-14 20:20:16]   Fitting GLM with 361 unique teams...
+[2026-03-14 20:20:25]   GLM Quality range: -39.88 to 45.26
+[2026-03-14 20:20:25] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:20:25]      1. Team 3376: 45.26
+[2026-03-14 20:20:25]      2. Team 3390: 36.54
+[2026-03-14 20:20:25]      3. Team 3163: 34.97
+[2026-03-14 20:20:25]      4. Team 3261: 34.96
+[2026-03-14 20:20:25]      5. Team 3231: 33.76
+[2026-03-14 20:20:25] 
+Season 2024 - M:
+[2026-03-14 20:20:25]   Symmetric games: 11,214
+[2026-03-14 20:20:25]   Tournament teams: 68
+[2026-03-14 20:20:25]   Filtered to 3,804 games involving tournament teams
+[2026-03-14 20:20:25]   Fitting GLM with 362 unique teams...
+[2026-03-14 20:20:35]   GLM Quality range: -34.79 to 27.01
+[2026-03-14 20:20:35] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:20:35]      1. Team 1163: 27.01
+[2026-03-14 20:20:35]      2. Team 1222: 26.77
+[2026-03-14 20:20:35]      3. Team 1112: 24.87
+[2026-03-14 20:20:35]      4. Team 1345: 24.62
+[2026-03-14 20:20:35]      5. Team 1235: 23.85
+[2026-03-14 20:20:35] 
+Season 2024 - W:
+[2026-03-14 20:20:35]   Symmetric games: 10,828
+[2026-03-14 20:20:35]   Tournament teams: 68
+[2026-03-14 20:20:35]   Filtered to 3,616 games involving tournament teams
+[2026-03-14 20:20:35]   Fitting GLM with 360 unique teams...
+[2026-03-14 20:20:44]   GLM Quality range: -37.75 to 44.00
+[2026-03-14 20:20:44] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:20:44]      1. Team 3376: 44.00
+[2026-03-14 20:20:44]      2. Team 3163: 39.65
+[2026-03-14 20:20:44]      3. Team 3234: 37.19
+[2026-03-14 20:20:44]      4. Team 3400: 36.21
+[2026-03-14 20:20:44]      5. Team 3323: 33.24
+[2026-03-14 20:20:44] 
+Season 2025 - M:
+[2026-03-14 20:20:44]   Symmetric games: 11,282
+[2026-03-14 20:20:44]   Tournament teams: 68
+[2026-03-14 20:20:44]   Filtered to 3,704 games involving tournament teams
+[2026-03-14 20:20:44]   Fitting GLM with 364 unique teams...
+[2026-03-14 20:20:53]   GLM Quality range: -31.39 to 30.45
+[2026-03-14 20:20:53] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:20:53]      1. Team 1181: 30.45
+[2026-03-14 20:20:53]      2. Team 1222: 29.29
+[2026-03-14 20:20:53]      3. Team 1120: 28.92
+[2026-03-14 20:20:53]      4. Team 1196: 28.40
+[2026-03-14 20:20:53]      5. Team 1104: 26.17
+[2026-03-14 20:20:53] 
+Season 2025 - W:
+[2026-03-14 20:20:53]   Symmetric games: 10,888
+[2026-03-14 20:20:53]   Tournament teams: 68
+[2026-03-14 20:20:53]   Filtered to 3,616 games involving tournament teams
+[2026-03-14 20:20:53]   Fitting GLM with 362 unique teams...
+[2026-03-14 20:21:03]   GLM Quality range: -40.49 to 45.26
+[2026-03-14 20:21:03] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:21:03]      1. Team 3376: 45.26
+[2026-03-14 20:21:03]      2. Team 3163: 43.79
+[2026-03-14 20:21:03]      3. Team 3400: 41.92
+[2026-03-14 20:21:03]      4. Team 3323: 39.49
+[2026-03-14 20:21:03]      5. Team 3417: 39.34
+[2026-03-14 20:21:03] 
+Season 2026 - M:
+[2026-03-14 20:21:03]   Symmetric games: 10,298
+[2026-03-14 20:21:03]   Fitting GLM with 365 unique teams...
+[2026-03-14 20:21:24]   GLM Quality range: -27.94 to 34.33
+[2026-03-14 20:21:24] 
+  Top 5 teams by GLM Quality (M):
+[2026-03-14 20:21:24]      1. Team 1276: 34.33
+[2026-03-14 20:21:24]      2. Team 1181: 32.49
+[2026-03-14 20:21:24]      3. Team 1112: 30.26
+[2026-03-14 20:21:24]      4. Team 1196: 28.67
+[2026-03-14 20:21:24]      5. Team 1228: 27.46
+[2026-03-14 20:21:24] 
+Season 2026 - W:
+[2026-03-14 20:21:24]   Symmetric games: 10,130
+[2026-03-14 20:21:24]   Fitting GLM with 363 unique teams...
+[2026-03-14 20:21:46]   GLM Quality range: -33.99 to 51.82
+[2026-03-14 20:21:46] 
+  Top 5 teams by GLM Quality (W):
+[2026-03-14 20:21:46]      1. Team 3163: 51.82
+[2026-03-14 20:21:46]      2. Team 3417: 48.71
+[2026-03-14 20:21:46]      3. Team 3376: 48.26
+[2026-03-14 20:21:46]      4. Team 3261: 46.84
+[2026-03-14 20:21:46]      5. Team 3400: 46.40
+[2026-03-14 20:21:46] 
+======================================================================
+                            Saving Ratings                            
+======================================================================
+[2026-03-14 20:21:46] Saved: /Users/rafeburns/Downloads/MMML26/processed/bradley_terry_ratings.pkl
+[2026-03-14 20:21:46] Saved: /Users/rafeburns/Downloads/MMML26/processed/elo_ratings.pkl
+[2026-03-14 20:21:46] Saved: /Users/rafeburns/Downloads/MMML26/processed/glm_quality_ratings.pkl
+[2026-03-14 20:21:46] Saved: /Users/rafeburns/Downloads/MMML26/processed/all_ratings.csv
+[2026-03-14 20:21:46] 
+======================================================================
+                      PHASE 2 COMPLETE - SUMMARY                      
+======================================================================
+[2026-03-14 20:21:46] 
+Ratings computed for 24 seasons
+[2026-03-14 20:21:46] 
+Bradley-Terry strength:
+[2026-03-14 20:21:46]   Mean: -0.00
+[2026-03-14 20:21:46]   Std: 10.30
+[2026-03-14 20:21:46]   Range: -40.79 to 48.65
+[2026-03-14 20:21:46] 
+Elo ratings:
+[2026-03-14 20:21:46]   Mean: 1500
+[2026-03-14 20:21:46]   Std: 116
+[2026-03-14 20:21:46]   Range: 1193 to 1857
+[2026-03-14 20:21:46] 
+GLM Quality:
+[2026-03-14 20:21:46]   Mean: -0.00
+[2026-03-14 20:21:46]   Std: 12.73
+[2026-03-14 20:21:46]   Range: -56.44 to 51.92
+[2026-03-14 20:21:46] 
+Home court advantage (Bradley-Terry):
+Traceback (most recent call last):
+  File "/Users/rafeburns/Downloads/MMML26/scripts/02_team_strength_ratings.py", line 500, in <module>
+    sys.exit(main())
+  File "/Users/rafeburns/Downloads/MMML26/scripts/02_team_strength_ratings.py", line 481, in main
+    log(f"  Mean: {np.mean(list(bt_home_advantages.values())):.2f} points")
+  File "/Users/rafeburns/opt/anaconda3/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 3504, in mean
+    return _methods._mean(a, axis=axis, dtype=dtype,
+  File "/Users/rafeburns/opt/anaconda3/lib/python3.9/site-packages/numpy/core/_methods.py", line 118, in _mean
+    ret = umr_sum(arr, axis, dtype, out, keepdims, where=where)
+TypeError: unsupported operand type(s) for +: 'dict' and 'dict'
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║          MARCH MACHINE LEARNING MANIA 2026 - PIPELINE RUNNER                 ║
+║                                                                              ║
+║   Based on analysis of winning solutions from recent competitions            ║
+║   Using: Bradley-Terry + Elo + GLM Quality + XGBoost                         ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+[2026-03-14 20:13:23] Pipeline started at 2026-03-14 20:13:23
+[2026-03-14 20:13:23] Project directory: /Users/rafeburns/Downloads/MMML26
+[2026-03-14 20:13:23] Output directory: /Users/rafeburns/Downloads/MMML26/outputs
+[2026-03-14 20:13:23] Running phases 1 through 5
+[2026-03-14 20:13:23] 
+[1/5] Phase 1: Data Preparation
+[2026-03-14 20:13:23] 
+======================================================================
+[2026-03-14 20:13:23] STARTING: Phase 1: Data Preparation
+[2026-03-14 20:13:23] Script: 01_data_preparation.py
+[2026-03-14 20:13:23] ======================================================================
+[2026-03-14 20:14:00] 
+======================================================================
+[2026-03-14 20:14:00] COMPLETED: Phase 1: Data Preparation
+[2026-03-14 20:14:00] Elapsed time: 37.2 seconds
+[2026-03-14 20:14:00] ======================================================================
+[2026-03-14 20:14:00] 
+[2/5] Phase 2: Team Strength Ratings
+[2026-03-14 20:14:00] 
+======================================================================
+[2026-03-14 20:14:00] STARTING: Phase 2: Team Strength Ratings
+[2026-03-14 20:14:00] Script: 02_team_strength_ratings.py
+[2026-03-14 20:14:00] ======================================================================
+[2026-03-14 20:21:46] 
+======================================================================
+[2026-03-14 20:21:46] FAILED: Phase 2: Team Strength Ratings
+[2026-03-14 20:21:46] Exit code: 1
+[2026-03-14 20:21:46] Elapsed time: 465.7 seconds
+[2026-03-14 20:21:46] ======================================================================
+[2026-03-14 20:21:46] 
+Pipeline stopped due to failure in Phase 2: Team Strength Ratings
+[2026-03-14 20:21:46] 
+======================================================================
+[2026-03-14 20:21:46] PIPELINE SUMMARY
+[2026-03-14 20:21:46] ======================================================================
+[2026-03-14 20:21:46] 
+Phases run: 2
+[2026-03-14 20:21:46] Successful: 1
+[2026-03-14 20:21:46] Failed: 1
+[2026-03-14 20:21:46] Total time: 502.9 seconds (8.4 minutes)
+[2026-03-14 20:21:46] 
+Pipeline completed with errors. Check individual phase logs for details.
+[2026-03-14 20:21:46] 
+Master log saved to: /Users/rafeburns/Downloads/MMML26/outputs/00_master_pipeline.log

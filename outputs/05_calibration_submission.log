@@ -1,0 +1,132 @@
+[2026-03-15 08:39:54] 
+======================================================================
+                  PHASE 5: CALIBRATION & SUBMISSION                   
+======================================================================
+[2026-03-15 08:39:54] 
+======================================================================
+                       Loading Models and Data                        
+======================================================================
+[2026-03-15 08:39:54] Loaded 37 XGBoost models
+[2026-03-15 08:39:54] Feature columns: 59
+[2026-03-15 08:39:54] Loaded OOF predictions: 4,820 samples
+[2026-03-15 08:39:54] Loaded ratings: 14,311 team-seasons
+[2026-03-15 08:39:55] Loaded gold-medal features
+[2026-03-15 08:39:55] Loaded season stats: 14,311 team-seasons
+[2026-03-15 08:39:55] Loaded seeds: 4,370 entries
+[2026-03-15 08:39:55] Loaded Massey Ordinals: 8,355 team-seasons
+[2026-03-15 08:39:55]   Systems: ['Rank_COL', 'Rank_DOL', 'Rank_MOR', 'Rank_POM', 'Rank_RPI', 'Rank_SAG']
+[2026-03-15 08:39:55] Models keyed by (Gender, Season) - separate M/W models
+[2026-03-15 08:39:55]   Genders: ['M', 'W']
+[2026-03-15 08:39:55] 
+======================================================================
+                      Fitting Calibration Models                      
+======================================================================
+[2026-03-15 08:39:55] 
+Fitting multiple calibration methods...
+[2026-03-15 08:39:55]   Logistic: scale=6.46, bias=-0.01, Brier=0.1651
+[2026-03-15 08:39:55]   Isotonic: Brier=0.1628
+[2026-03-15 08:39:55]   Beta: a=-0.001, b=0.929, c=0.688, Brier=0.1649
+[2026-03-15 08:39:55] 
+  Best method: isotonic (Brier=0.1628)
+[2026-03-15 08:39:55] 
+Testing probability pushing on OOF data...
+[2026-03-15 08:39:55]   Best pushing: power strength=1.0, Brier=0.1628
+[2026-03-15 08:39:55]   No pushing Brier: 0.1628
+[2026-03-15 08:39:55]   Pushing does NOT improve Brier, will skip
+[2026-03-15 08:39:55] Saved: /Users/rafeburns/Downloads/MMML26/models/calibration.pkl
+[2026-03-15 08:39:55] 
+======================================================================
+                     Loading Submission Template                      
+======================================================================
+[2026-03-15 08:39:55] Loaded: /Users/rafeburns/Downloads/MMML26/data/SampleSubmissionStage2.csv
+[2026-03-15 08:39:55] Matchups to predict: 132,133
+[2026-03-15 08:39:55] 
+======================================================================
+                    Building Features (Vectorized)                    
+======================================================================
+[2026-03-15 08:39:55] Building features using vectorized operations...
+[2026-03-15 08:40:05]   Added Massey Ordinals: ['Rank_COL', 'Rank_DOL', 'Rank_MOR', 'Rank_POM', 'Rank_RPI', 'Rank_SAG']
+[2026-03-15 08:40:05]   Built features for 132,133 matchups
+[2026-03-15 08:40:05]   Men's matchups: 66,430
+[2026-03-15 08:40:05]   Women's matchups: 65,703
+[2026-03-15 08:40:05] 
+======================================================================
+                    Generating Predictions (Batch)                    
+======================================================================
+[2026-03-15 08:40:05] Feature columns: 59
+[2026-03-15 08:40:05] 
+  M predictions (66,430 matchups):
+[2026-03-15 08:40:11]     Models: 22
+[2026-03-15 08:40:11]     Margin range: -22.38 to 23.23
+[2026-03-15 08:40:11] 
+  W predictions (65,703 matchups):
+[2026-03-15 08:40:16]     Models: 15
+[2026-03-15 08:40:16]     Margin range: -48.67 to 48.53
+[2026-03-15 08:40:16] Ensemble margin range: -48.67 to 48.53
+[2026-03-15 08:40:16] Base probability range: 0.010 to 0.990
+[2026-03-15 08:40:16] Probability pushing disabled (didn't improve OOF Brier)
+[2026-03-15 08:40:16] Applied seed-based historical adjustments
+[2026-03-15 08:40:16] 
+======================================================================
+                         Prediction Analysis                          
+======================================================================
+[2026-03-15 08:40:16] 
+Base prediction statistics:
+[2026-03-15 08:40:16]   Mean probability: 0.4985
+[2026-03-15 08:40:16]   Std probability: 0.3365
+[2026-03-15 08:40:16]   Min/Max: 0.0100 / 0.9900
+[2026-03-15 08:40:16] 
+Final (pushed) prediction statistics:
+[2026-03-15 08:40:16]   Mean probability: 0.4985
+[2026-03-15 08:40:16]   Std probability: 0.3365
+[2026-03-15 08:40:16]   Min/Max: 0.0100 / 0.9900
+[2026-03-15 08:40:16] 
+Margin statistics:
+[2026-03-15 08:40:16]   Mean margin: -0.06
+[2026-03-15 08:40:16]   Std margin: 14.63
+[2026-03-15 08:40:16] 
+Probability distribution (Base vs Pushed):
+[2026-03-15 08:40:16]   Range              Base     Pushed
+[2026-03-15 08:40:16]   0.05-0.15:      16,072     16,072
+[2026-03-15 08:40:16]   0.15-0.25:      12,426     12,426
+[2026-03-15 08:40:16]   0.25-0.35:      12,837     12,837
+[2026-03-15 08:40:16]   0.35-0.45:       9,946      9,946
+[2026-03-15 08:40:16]   0.45-0.55:       3,567      3,567
+[2026-03-15 08:40:16]   0.55-0.65:      11,008     11,008
+[2026-03-15 08:40:16]   0.65-0.75:       9,674      9,674
+[2026-03-15 08:40:16]   0.75-0.85:       6,290      6,290
+[2026-03-15 08:40:16]   0.85-0.95:      22,530     22,530
+[2026-03-15 08:40:16] 
+Extreme predictions (confidence indicators):
+[2026-03-15 08:40:16]   Base < 0.15 or > 0.85: 66,385
+[2026-03-15 08:40:16]   Pushed < 0.15 or > 0.85: 66,385
+[2026-03-15 08:40:16]   Base < 0.10 or > 0.90: 35,296
+[2026-03-15 08:40:16]   Pushed < 0.10 or > 0.90: 35,296
+[2026-03-15 08:40:16] 
+======================================================================
+                          Saving Submissions                          
+======================================================================
+[2026-03-15 08:40:16] Saved: /Users/rafeburns/Downloads/MMML26/submissions/submission.csv (final with pushing + seed adj)
+[2026-03-15 08:40:16] Saved: /Users/rafeburns/Downloads/MMML26/submissions/submission_conservative.csv (base calibration only)
+[2026-03-15 08:40:17] Saved: /Users/rafeburns/Downloads/MMML26/submissions/submission_aggressive.csv (strength=2.5 pushing)
+[2026-03-15 08:40:18] Saved: /Users/rafeburns/Downloads/MMML26/submissions/submission_detailed.csv
+[2026-03-15 08:40:18] 
+======================================================================
+                      PHASE 5 COMPLETE - SUMMARY                      
+======================================================================
+[2026-03-15 08:40:18] 
+Submission generated:
+[2026-03-15 08:40:18]   - Matchups: 132,133
+[2026-03-15 08:40:18]   - Models ensembled: 37
+[2026-03-15 08:40:18]   - Calibration method: isotonic
+[2026-03-15 08:40:18]   - Calibration Brier: 0.16280707970828528
+[2026-03-15 08:40:18]   - Probability pushing: disabled
+[2026-03-15 08:40:18] 
+Submission variants:
+[2026-03-15 08:40:18]   - submission.csv: Final (calibration + pushing + seed adj)
+[2026-03-15 08:40:18]   - submission_conservative.csv: Base calibration only
+[2026-03-15 08:40:18]   - submission_aggressive.csv: Extra aggressive pushing
+[2026-03-15 08:40:18] 
+Files saved to: /Users/rafeburns/Downloads/MMML26/submissions
+[2026-03-15 08:40:18] Log saved to: /Users/rafeburns/Downloads/MMML26/outputs/05_calibration_submission.log
+[2026-03-15 08:40:18] ======================================================================
